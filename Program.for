@@ -39,6 +39,6 @@ C
       COUNT = COUNT + 1
   600 WRITE (6, 700) A, B, C, X1R, X2R, X1I, X2I
   700 FORMAT (1PE15.4)
-C
+C 
       RETURN
       END
