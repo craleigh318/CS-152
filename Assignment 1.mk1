@@ -1,15 +1,18 @@
 !define BLANK ""
-C:\Users\Brandon\Documents\GitHub\CS-152-Assignment-1\Program.obj : C:\Users&
-\Brandon\Documents\GitHub\CS-152-Assignment-1\Program.for .AUTODEPEND
+"C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\Program.o&
+bj" : "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\Pro&
+gram.for" .AUTODEPEND
  @C:
- cd C:\Users\Brandon\Documents\GitHub\CS-152-Assignment-1
+ cd C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1
  wfc386 Program.for -d2 -q -dep
 
-"C:\Users\Brandon\Documents\GitHub\CS-152-Assignment-1\Assignment 1.exe" : C&
-:\Users\Brandon\Documents\GitHub\CS-152-Assignment-1\Program.obj C:\Users\Br&
-andon\Documents\GitHub\CS-152-Assignment-1\quadratic.in .AUTODEPEND
+"C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\Assignmen&
+t 1.exe" : "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-&
+1\Program.obj" "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignm&
+ent-1\quadratic.in" "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-As&
+signment-1\quadratic.out" .AUTODEPEND
  @C:
- cd C:\Users\Brandon\Documents\GitHub\CS-152-Assignment-1
+ cd C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1
  @%write "Assignment 1.lk1" FIL Program.obj
  @%append "Assignment 1.lk1" 
 !ifneq BLANK ""
@@ -19,6 +22,6 @@ andon\Documents\GitHub\CS-152-Assignment-1\quadratic.in .AUTODEPEND
 !ifneq BLANK ""
  @%append "Assignment 1.lk1" 
 !endif
- *wlink name 'Assignment 1' d all sys nt_win op m op maxe=25 op q op symf @'&
-Assignment 1.lk1'
+ *wlink name 'Assignment 1' d all sys nt op m op maxe=25 op q op symf @'Assi&
+gnment 1.lk1'
 
