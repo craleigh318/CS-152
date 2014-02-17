@@ -1,19 +1,19 @@
 !define BLANK ""
-"C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\Program.o&
-bj" : "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\Pro&
-gram.for" .AUTODEPEND
+"C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\quadratic&
+.obj" : "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\q&
+uadratic.for" .AUTODEPEND
  @C:
  cd C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1
- wfc386 Program.for -d2 -q -dep
+ wfc386 quadratic.for -d2 -q -dep
 
 "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1\Assignmen&
 t 1.exe" : "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-&
-1\Program.obj" "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignm&
-ent-1\quadratic.in" "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-As&
-signment-1\quadratic.out" .AUTODEPEND
+1\quadratic.obj" "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assig&
+nment-1\quadratic.in" "C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-&
+Assignment-1\quadratic.out" .AUTODEPEND
  @C:
  cd C:\Users\Christopher Raleigh\Documents\GitHub\CS-152-Assignment-1
- @%write "Assignment 1.lk1" FIL Program.obj
+ @%write "Assignment 1.lk1" FIL quadratic.obj
  @%append "Assignment 1.lk1" 
 !ifneq BLANK ""
  *wlib -q -n -b "Assignment 1.imp" 
