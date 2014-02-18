@@ -1,0 +1,5 @@
+ (define alternate
+    (lambda (lst)
+      (cond
+       ((null? lst) '())
+       ((number? 1) (cons(car lst) (alternate(cddr lst)))))))
