@@ -1,0 +1,8 @@
+> (all-same? '((a b) (a b) (a b)))
+#t
+> (all-same? '(a))
+#t
+> (all-same? '())
+#t
+> (all-same? '(x y z))
+#f
