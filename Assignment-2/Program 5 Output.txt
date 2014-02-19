@@ -1,0 +1,2 @@
+> (subst-first 'dog 'cat '(my cat is smart))
+(my dog is smart)
