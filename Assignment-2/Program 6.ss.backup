@@ -1,0 +1,11 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 6.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
+(define translate
+  (lambda (word dictionary)
+    (cond
+      ((null? dictionary) word)
+      ((equal? word (caar dictionary))) (cadar dictionary))
+      (else (translate word (cdr dictionary))))))
