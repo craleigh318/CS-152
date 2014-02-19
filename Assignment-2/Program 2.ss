@@ -1,3 +1,8 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 2.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
 (define alternate
   (lambda (lst)
     (cond

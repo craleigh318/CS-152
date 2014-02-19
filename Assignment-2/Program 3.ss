@@ -1,3 +1,8 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 3.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
 (define next-same?
   (lambda (element1 lst)
     (cond

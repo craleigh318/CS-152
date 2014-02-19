@@ -1,17 +1,10 @@
-> (define alternate
-    (lambda (lst)
-      (cond
-       ((null? lst) '())
-       ((null? (cdr lst)) (cons (car lst) '())) 
-       (else (cons(car lst) (alternate(cddr lst)))))))
-> (alternate '(a b c d e))
-(a c e)
-> (alternate '(a b (c d) e f (a (b c))a))
-(a (c d) f a)
-> (alternate '(a b c d))
-(a c)
-> (alternate '(a b c))
-(a c)
-> (alternate '(a b))
-(a)
-> 
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 2.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+(define alternate
+  (lambda (lst)
+    (cond
+      ((null? lst) '())
+      ((null? (cdr lst)) (cons (car lst) '()))
+      (else (cons(car lst) (alternate(cddr lst)))))))

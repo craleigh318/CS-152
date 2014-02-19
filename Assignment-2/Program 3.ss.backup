@@ -1,6 +1,15 @@
-(define alternate
-  (lambda (lst)
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 3.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+(define next-same?
+  (lambda (element1 lst)
     (cond
-      ((null? lst) '())
-      ((null? (cdr lst)) (cons (car lst) '()))
-      (else (cons(car lst) (alternate(cddr lst)))))))
+      ((null? lst) #t)
+      ((equal? element1 (car lst)) (next-same? element1 (cdr lst)))
+      (else #f))))
+
+(define all-same?
+  (lambda (lst)
+    (if (null? lst) #t
+        (next-same? (car lst) (cdr lst)))))

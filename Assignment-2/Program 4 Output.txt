@@ -1,0 +1,6 @@
+> (remove-leading 'x '(a b c x y z))
+(x y z)
+> (remove-leading 'x '(a b c))
+()
+> (remove-leading '(p q) '(a (p q) z))
+((p q) z)
