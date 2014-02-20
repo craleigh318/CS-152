@@ -6,7 +6,7 @@
         (else (contains var (cdr lst2)))
         )))
  ;
- (define union
+> (define union
     (lambda (lst1 lst2)
       (cond
         ((null? lst1) lst2)
@@ -14,3 +14,8 @@
         ((not (contains (car lst1) lst2)) (cons (car lst1) lst2))
         ((contains (car lst1) lst2) (union (cdr lst1) lst2))
         )))
+> (union '(a b (c)) '(b (c) d))
+(a b (c) d)
+> (union '() '(a b c))
+(a b c)
+> 
