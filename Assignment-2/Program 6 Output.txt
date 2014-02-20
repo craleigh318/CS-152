@@ -1,0 +1,3 @@
+> (translate 'cat '())
+cat
+> (translate 'cat '((dog chien) (cat chat)))

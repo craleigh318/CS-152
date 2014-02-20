@@ -1,0 +1,16 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 7.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
+(define sandwich-first-suffix
+  (lambda (a b prefix suffix)
+    (cond
+      ((null? suffix) prefix)
+      ((null? (cdr suffix)) (append prefix suffix))
+      ((and (equal? b (car suffix)) (equal? b (cadr suffix))) (append prefix (list (car suffix)) (list a) (cdr suffix)))
+      (else (sandwich-first-suffix a b (append prefix (list (car suffix))) (cdr suffix))))))
+
+(define sandwich-first
+  (lambda (a b lst)
+    (sandwich-first-suffix a b '() lst)))

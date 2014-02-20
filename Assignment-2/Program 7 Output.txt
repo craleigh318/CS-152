@@ -1,0 +1,8 @@
+> (sandwich-first 'meat 'bread 
+ '(bread cheese bread bread mustard))
+(bread cheese bread meat bread mustard)
+> (sandwich-first 'meat 'bread 
+ '(bread cheese bread bread))
+(bread cheese bread meat bread)
+> (sandwich-first 'a 'a '())
+()
