@@ -12,5 +12,5 @@
         ((null? lst1) lst2)
         ((null? lst2) lst1)
         ((not (contains (car lst1) lst2)) (cons (car lst1) lst2))
-        (((contains (car lst1) lst2)) (union (cdr lst1) lst2))
+        ((contains (car lst1) lst2) (union (cdr lst1) lst2))
         )))
