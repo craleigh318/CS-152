@@ -1,3 +1,6 @@
+;
+; NOT WORKING YET
+;
  (define contains
     (lambda (var lst2)
       (cond
