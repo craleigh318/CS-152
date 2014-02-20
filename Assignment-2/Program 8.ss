@@ -43,4 +43,31 @@
 | 2
 |3
 3
+> (count '(p q) '(a (p q) (b ((p q) (p q))) d))
+|(count (p q) (a (p q) (b ((p q) (p q))) d))
+|(count (p q) ((p q) (b ((p q) (p q))) d))
+| (count (p q) ((b ((p q) (p q))) d))
+| (count (p q) (b ((p q) (p q))))
+| (count (p q) (((p q) (p q))))
+| (count (p q) ((p q) (p q)))
+| |(count (p q) ((p q)))
+| | (count (p q) ())
+| | 0
+| |1
+| 2
+|3
+3
+> (count '(p q) '(a (p q) (b ((p q) c)) d))
+|(count (p q) (a (p q) (b ((p q) c)) d))
+|(count (p q) ((p q) (b ((p q) c)) d))
+| (count (p q) ((b ((p q) c)) d))
+| (count (p q) (b ((p q) c)))
+| (count (p q) (((p q) c)))
+| (count (p q) ((p q) c))
+| |(count (p q) (c))
+| |(count (p q) ())
+| |0
+| 1
+|2
+2
 > 
