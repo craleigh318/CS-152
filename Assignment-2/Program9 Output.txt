@@ -1,0 +1,6 @@
+> (union '(a b (c)) '(b (c) d))
+(a b (c) d)
+> (union '() '(a b c))
+(a b c)
+> (union '(a b c d) '(a b c))
+(a b c d)

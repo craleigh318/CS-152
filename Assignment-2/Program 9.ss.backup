@@ -1,7 +1,10 @@
+;
 ; == CS 152 Section 05 Group: The Phantoms ==
 ; ======= Assignment 2: Program 9.ss ========
 ;
 ; By Christopher Raleigh and Brandon Rossi
+;
+; NOT WORKING YET
 ;
 (define union
   (lambda (lst1 lst2)
@@ -11,6 +14,6 @@
       ((null? lst2)
        lst1)
       (else
-        (if (member (car lst2) lst1)
-            (union lst1 (cdr lst2))
-            (union (append lst1 (list (car lst2))) (cdr lst2)))))))
+        (if (not (member (car lst2) lst1))
+            (union (append lst1 (car lst2)) (cdr lst2))
+            (union lst1 lst2))))))
