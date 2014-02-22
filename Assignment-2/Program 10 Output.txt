@@ -1,0 +1,6 @@
+> (intersect '(a b (c)) '(a (c) d))
+(a (c))
+> (intersect '(a b b c) '(b c c d))
+(b c)
+> (intersect '(a b c) '((c) d e))
+()
