@@ -1,73 +1,48 @@
-> (define count 
-    (lambda (item lst) 
-    (cond 
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 2: Program 1.ss ========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
+; nest is a procedure that constructs a nested
+; set of lists based on the number passed into
+; the procedure by the user. For example if a user
+; passes in the number Two to procedure nest then 
+; the resulting output will be ((())).
+(define count
+  (lambda (item lst)
+    (cond
       ((null? lst) 0)
       ((equal? item (car lst)) (+ 1 (count item (cdr lst))))
       ((list? (car lst))(count item (car lst)))
       (else (count item (cdr lst))))))
-> (count 'x '(x (x) (x)))
-2
-> (count 'x '(x (x x) (x)))
-3
-> (trace count)
-(count)
-> (count 'x '(x (x x) (x)))
-|(count x (x (x x) (x)))
-| (count x ((x x) (x)))
-| (count x (x x))
-| |(count x (x))
-| | (count x ())
-| | 0
-| |1
-| 2
-|3
-3
-> (count 'x '(x (x) (x)))
-|(count x (x (x) (x)))
-| (count x ((x) (x)))
-| (count x (x))
-| |(count x ())
-| |0
-| 1
-|2
-2
-> (count 'x '(x g x h x))
-|(count x (x g x h x))
-| (count x (g x h x))
-| (count x (x h x))
-| |(count x (h x))
-| |(count x (x))
-| | (count x ())
-| | 0
-| |1
-| 2
-|3
-3
-> (count '(p q) '(a (p q) (b ((p q) (p q))) d))
-|(count (p q) (a (p q) (b ((p q) (p q))) d))
-|(count (p q) ((p q) (b ((p q) (p q))) d))
-| (count (p q) ((b ((p q) (p q))) d))
-| (count (p q) (b ((p q) (p q))))
-| (count (p q) (((p q) (p q))))
-| (count (p q) ((p q) (p q)))
-| |(count (p q) ((p q)))
-| | (count (p q) ())
-| | 0
-| |1
-| 2
-|3
-3
-> (count '(p q) '(a (p q) (b ((p q) c)) d))
-|(count (p q) (a (p q) (b ((p q) c)) d))
-|(count (p q) ((p q) (b ((p q) c)) d))
-| (count (p q) ((b ((p q) c)) d))
-| (count (p q) (b ((p q) c)))
-| (count (p q) (((p q) c)))
-| (count (p q) ((p q) c))
-| |(count (p q) (c))
-| |(count (p q) ())
-| |0
-| 1
-|2
-2
-> 
+; OUTPUT
+;|3
+;3
+;> (count '(p q) '(a (p q) (b ((p q) (p q))) 
+;d))
+;|(count (p q) (a (p q) (b ((p q) (p q))) d))
+;|(count (p q) ((p q) (b ((p q) (p q))) d))
+;| (count (p q) ((b ((p q) (p q))) d))
+;| (count (p q) (b ((p q) (p q))))
+;| (count (p q) (((p q) (p q))))
+;| (count (p q) ((p q) (p q)))
+;| |(count (p q) ((p q)))
+;| | (count (p q) ())
+;| | 0
+;| |1
+;| 2
+;|3
+;3
+;> (count '(p q) '(a (p q) (b ((p q) c)) d))
+;|(count (p q) (a (p q) (b ((p q) c)) d))
+;|(count (p q) ((p q) (b ((p q) c)) d))
+;| (count (p q) ((b ((p q) c)) d))
+;| (count (p q) (b ((p q) c)))
+;| (count (p q) (((p q) c)))
+;| (count (p q) ((p q) c))
+;| |(count (p q) (c))
+;| |(count (p q) ())
+;| |0
+;| 1
+;|2
+;2
