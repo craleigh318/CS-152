@@ -1,16 +1,16 @@
 ; == CS 152 Section 05 Group: The Phantoms ==
-; ======= Assignment 2: Program 9.ss ========
+; ======= Assignment 2: Program 10.ss =======
 ;
 ; By Christopher Raleigh and Brandon Rossi
 ;
-(define union
+(define make-intersection
+  (lambda (lst1 lst2 intersection)
+    (if (or (null? lst1) (null? lst2))
+        intersection
+        (if (and (member (car lst1) lst2) (not (member (car lst1) intersection)))
+            (make-intersection (cdr lst1) lst2 (append intersection (list (car lst1))))
+            (make-intersection (cdr lst1) lst2 intersection)))))
+
+(define intersect
   (lambda (lst1 lst2)
-    (cond
-      ((null? lst1)
-       lst2)
-      ((null? lst2)
-       lst1)
-      (else
-        (if (member (car lst2) lst1)
-            (union lst1 (cdr lst2))
-            (union (append lst1 (list (car lst2))) (cdr lst2)))))))
+    (make-intersection lst1 lst2 '())))
