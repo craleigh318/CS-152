@@ -7,7 +7,7 @@
   (lambda (a b prefix suffix)
     (cond
       ((null? suffix) prefix)
-      ((or (null? (cdr suffix)) (null? (cddr suffix))) (append prefix suffix))
+      ((null? (cdr suffix)) (append prefix suffix))
       ((and (equal? b (car suffix)) (equal? b (cadr suffix))) (append prefix (list (car suffix)) (list a) (cdr suffix)))
       (else (sandwich-first-suffix a b (append prefix (list (car suffix))) (cdr suffix))))))
 

@@ -7,8 +7,8 @@
   (lambda (new old prefix suffix)
     (cond
       ((null? suffix) prefix)
-      ((equal? old (car suffix)) (append prefix new (cdr suffix)))
-      (else (subst-first-suffix new old (append prefix (car suffix)) (cdr suffix))))))
+      ((equal? old (car suffix)) (append prefix (list new) (cdr suffix)))
+      (else (subst-first-suffix new old (append prefix (list (car suffix))) (cdr suffix))))))
 
 (define subst-first
   (lambda (new old lst)

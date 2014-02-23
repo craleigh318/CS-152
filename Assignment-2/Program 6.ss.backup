@@ -7,5 +7,5 @@
   (lambda (word dictionary)
     (cond
       ((null? dictionary) word)
-      ((equal? word (caar dictionary))) (cadar dictionary))
+      ((equal? word (caar dictionary)) (cadar dictionary))
       (else (translate word (cdr dictionary))))))
