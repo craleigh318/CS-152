@@ -8,17 +8,27 @@
 ; the procedure by the user. For example if a user
 ; passes in the number Two to procedure nest then 
 ; the resulting output will be ((())).
+;
+(define count-n
+  (lambda (item lst n)
+    (cond
+      ((null? lst)
+       n)
+      ((equal? item (car lst))
+       (count-n item (cdr lst) (+ n 1)))
+      (else
+        (if (list? (car lst))
+            (+ (count-n item (car lst) 0)  (count-n item (cdr lst) n))
+            (count-n item (cdr lst) n))))))
+
 (define count
   (lambda (item lst)
-    (cond
-      ((null? lst) 0)
-      ((equal? item (car lst)) (+ 1 (count item (cdr lst))))
-      ((list? (car lst))(count item (car lst)))
-      (else (count item (cdr lst))))))
+    (count-n item lst 0)))
 ; OUTPUT
 ;|3
 ;3
-;> (count '(p q) '(a (p q) (b ((p q) (p q))) 
+;> (count '(p q) '(a (p q) (b ((p q) (p q))) 
+
 ;d))
 ;|(count (p q) (a (p q) (b ((p q) (p q))) d))
 ;|(count (p q) ((p q) (b ((p q) (p q))) d))
