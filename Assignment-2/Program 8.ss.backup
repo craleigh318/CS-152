@@ -18,8 +18,8 @@
        (count-n item (cdr lst) (+ n 1)))
       (else
         (if (list? (car lst))
-            ((count-n item (car lst) n))
-        (count-n item (cdr lst) n)))))
+            (+ (count-n item (car lst) 0)  (count-n item (cdr lst) n))
+            (count-n item (cdr lst) n))))))
 
 (define count
   (lambda (item lst)
