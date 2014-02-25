@@ -143,23 +143,3 @@
       ((equal? item (car lst)) (cdr lst))
       (else (after item (cdr lst)))
 )))
-
-; START OF EDIT
-;
-;returns expon of a function
-(cond
-  ((equal? '^ 
-        (car (after 'x lst)))
-      (expt x (cadr (after 'x lst)))
-      ))
-;
-;adds ops to a new list
- (define findOp
-    (lambda (f op)
-      (cond
-        ((null? f) op)
-        ((equal? '+ (car f)) (findOp (cdr f) (cons '+ op))) 
-        ((equal? '- (car f)) (findOp (cdr f) (cons '- op)))          
-        (else (findOp (cdr f) op))
-        )))
-;
