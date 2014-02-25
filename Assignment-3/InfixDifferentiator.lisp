@@ -1,3 +1,8 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 3:========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
 ; Differentiate an infix polynomial with terms of the form +cax^n
 ; where c is an optional integer constant and a is an optional
 ; variable other than x, and optional exponent n is an integer > 0.
@@ -146,11 +151,26 @@
 
 ; START OF EDIT
 ;
-;returns expon of a function
+;SAME
+;evaluates x^n
 (cond
   ((equal? '^ 
         (car (after 'x lst)))
       (expt x (cadr (after 'x lst)))
+      ))
+(define evalEXP
+    (lambda (x lst)
+      (cond
+        ((equal? '^ 
+        (car (after x lst)))
+      (expt x (cadr (after x lst)))
+      ))))
+;END SAME
+; 
+(define multiply
+    (lambda (lst)
+      (if (null? lst) 1
+          (* (car lst) (multiply (cdr lst))))
       ))
 ;
 ;adds ops to a new list
@@ -159,7 +179,7 @@
       (cond
         ((null? f) op)
         ((equal? '+ (car f)) (findOp (cdr f) (cons '+ op))) 
-        ((equal? '- (car f)) (findOp (cdr f) (cons '- op)))          
+        ;((equal? '- (car f)) (findOp (cdr f) (cons '- op)))          
         (else (findOp (cdr f) op))
         )))
 ;
