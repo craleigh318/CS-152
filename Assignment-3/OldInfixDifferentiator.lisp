@@ -149,41 +149,37 @@
       (else (after item (cdr lst)))
 )))
 
-; ==New Code==
-
-; Evaluate x^n.
+; START OF EDIT
 ;
-(define evaluate-exponent
+;SAME
+;evaluates x^n
+(cond
+  ((equal? '^ 
+        (car (after 'x lst)))
+      (expt x (cadr (after 'x lst)))
+      ))
+(define evalEXP
     (lambda (x lst)
       (cond
-        ((equal? '^ (car lst))
-      (expt x (cadr lst))
+        ((equal? '^ 
+        (car (after x lst)))
+      (expt x (cadr (after x lst)))
       ))))
-
-; Multiply multiple coefficients.
-;
+;END SAME
+; 
 (define multiply
     (lambda (lst)
       (if (null? lst) 1
-          (* (car lst) (multiply (cdr lst))))))
-
-; Return the evaluation of function f with respect to x.
+          (* (car lst) (multiply (cdr lst))))
+      ))
 ;
-(define evaluate
-  (lambda (f x)
-    (cond
-      ((null? f)
-       f)
-      ((member '+ f)
-       (evaluate (terminize f) x))
-      ((list? (car f))
-       (append (evaluate (car f) x) (cons '+ (evaluate (cdr f) x))))
-      (else
-        (cons (multiply (upto x f)) (cons x (after x f)))))))
-;        (* (multiply (upto x f)) (evaluate-exponent (after x f)))))))
-
-; Return the derivative of function f with respect to x.
+;adds ops to a new list
+ (define findOp
+    (lambda (f op)
+      (cond
+        ((null? f) op)
+        ((equal? '+ (car f)) (findOp (cdr f) (cons '+ op))) 
+        ;((equal? '- (car f)) (findOp (cdr f) (cons '- op)))          
+        (else (findOp (cdr f) op))
+        )))
 ;
-(define evaluate-deriv
-  (lambda (f x)
-    (f x)))
