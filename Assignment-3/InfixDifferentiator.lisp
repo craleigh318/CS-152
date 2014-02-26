@@ -189,4 +189,7 @@
 ;
 (define evaluate-deriv
   (lambda (f x)
-    (f x)))
+    (cond
+    ((null? f) '())
+    ((evaluate (deriv f x) x))
+    )))
