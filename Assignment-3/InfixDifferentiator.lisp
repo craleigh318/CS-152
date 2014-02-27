@@ -148,23 +148,21 @@
       ((equal? item (car lst)) (cdr lst))
       (else (after item (cdr lst)))
 )))
-
+;
 ; ==New Code==
-
-; Evaluate x^n.
+(define x 2)
+(define a 3)
+(define b 4)
+(define f '(5 a x ^ 2))
 ;
+; Evaluate x^n. This works I think
 (define evaluate-exponent
-  (lambda (x lst)
-    (cond
-      ((null? lst)
-       x)
-      ((equal? '^ (car lst))
-        (expt x (cadr lst)))
-      (else
-        x))))
-
-; Multiply multiple coefficients.
+    (lambda (x lst)
+      (cond
+        ((equal? '^ (car (after 'x lst))) (expt x (cadr (after 'x lst))))
+        )))
 ;
+; Multiply multiple coefficients.
 (define multiply
     (lambda (lst)
       (if (or (null? lst) (not (integer? (car lst))))
@@ -176,14 +174,11 @@
 (define evaluate
   (lambda (f x)
     (cond
-      ((null? f)
-       0)
-      ((member '+ f)
-       (evaluate (terminize f) x))
-      ((list? (car f))
-       (+ (evaluate (car f) x) (evaluate (cdr f) x)))
-      (else
-        (* (multiply (upto x f)) (evaluate-exponent x (after x f)))))))
+      ((null? f) 0)
+      ((member '+ f) (evaluate (terminize f) x))
+      ((list? (car f)) (+ (evaluate (car f) x) (evaluate (cdr f) x)))
+      (else (* (multiply (upto x f)) (evaluate-exponent x f)))
+      )))
 
 ; Return the derivative of function f with respect to x.
 ;

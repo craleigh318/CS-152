@@ -154,17 +154,21 @@
 ; Evaluate x^n.
 ;
 (define evaluate-exponent
-    (lambda (x lst)
-      (cond
-        ((equal? '^ (car lst))
-      (expt x (cadr lst))
-      ))))
+  (lambda (x lst)
+    (cond
+      ((null? lst)
+       x)
+      ((equal? '^ (car lst))
+        (expt x (cadr lst)))
+      (else
+        x))))
 
 ; Multiply multiple coefficients.
 ;
 (define multiply
     (lambda (lst)
-      (if (null? lst) 1
+      (if (or (null? lst) (not (integer? (car lst))))
+          1
           (* (car lst) (multiply (cdr lst))))))
 
 ; Return the evaluation of function f with respect to x.
@@ -173,17 +177,19 @@
   (lambda (f x)
     (cond
       ((null? f)
-       f)
+       0)
       ((member '+ f)
        (evaluate (terminize f) x))
       ((list? (car f))
-       (append (evaluate (car f) x) (cons '+ (evaluate (cdr f) x))))
+       (+ (evaluate (car f) x) (evaluate (cdr f) x)))
       (else
-        (cons (multiply (upto x f)) (cons x (after x f)))))))
-;        (* (multiply (upto x f)) (evaluate-exponent (after x f)))))))
+        (* (multiply (upto x f)) (evaluate-exponent x (after x f)))))))
 
 ; Return the derivative of function f with respect to x.
 ;
 (define evaluate-deriv
   (lambda (f x)
-    (f x)))
+    (cond
+    ((null? f) '())
+    ((evaluate (deriv f x) x))
+    )))
