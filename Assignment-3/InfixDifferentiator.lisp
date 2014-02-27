@@ -177,9 +177,9 @@
       ((null? f) 0)
       ((member '+ f) (evaluate (terminize f) x))
       ((list? (car f)) (+ (evaluate (car f) x) (evaluate (cdr f) x)))
-      (else (* (multiply (upto x f)) (evaluate-exponent x f)))
+      (else (* (multiply (upto x (map (eval f)))) (evaluate-exponent x f)))
       )))
-
+;
 ; Return the derivative of function f with respect to x.
 ;
 (define evaluate-deriv
