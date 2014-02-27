@@ -170,7 +170,7 @@
           (* (car lst) (multiply (cdr lst))))))
 
 ; Return the evaluation of function f with respect to x.
-;
+;(map eval f needs to be added to upto x f)
 (define evaluate
   (lambda (f x)
     (cond
