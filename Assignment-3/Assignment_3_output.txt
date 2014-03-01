@@ -1,0 +1,87 @@
+> (evaluate f x)
+|(evaluate (5 a x ^ 4 + 3 b x ^ 3) 2)
+|(evaluate ((5 a x ^ 4) (3 b x ^ 3)) x)
+| (evaluate ((3 b x ^ 3)) x)
+| |(evaluate () x)
+| |0
+| |(evaluate (3 b x ^ 3) x)
+| | (evaluate-exponent x (3 b x ^ 3))
+Exception in expt: x is not a number
+Type (debug) to enter the debugger.
+> (define evaluate-exponent
+   (lambda (x lst)
+     (cond
+       ((not (pair? (after 'x lst))) x)
+       ((equal? '^ (car (after 'x lst))) (expt (eval x) (cadr (after 'x lst))))
+       )))
+> (evaluate f x)
+|(evaluate (5 a x ^ 4 + 3 b x ^ 3) 2)
+|(evaluate ((5 a x ^ 4) (3 b x ^ 3)) x)
+| (evaluate ((3 b x ^ 3)) x)
+| |(evaluate () x)
+| |0
+| |(evaluate (3 b x ^ 3) x)
+| |96
+| 96
+| (evaluate (5 a x ^ 4) x)
+| 240
+|336
+336
+> (define f '(5 a x ^ 4 + 3 b x ^ 3 + x))
+> (evaluate f x)
+|(evaluate (5 a x ^ 4 + 3 b x ^ 3 + x) 2)
+|(evaluate ((5 a x ^ 4) (3 b x ^ 3) (x)) x)
+| (evaluate ((3 b x ^ 3) (x)) x)
+| |(evaluate ((x)) x)
+| | (evaluate () x)
+| | 0
+| | (evaluate (x) x)
+Exception in *: x is not a number
+Type (debug) to enter the debugger.
+> (define f '(3 a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7))
+> (evaluate f x)
+|(evaluate (3 a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7) 2)
+|(evaluate ((3 a x ^ 5) (b x ^ 4) (2 x ^ 3) (6 x ^ 2) (3 x) (7)) x)
+| (evaluate ((b x ^ 4) (2 x ^ 3) (6 x ^ 2) (3 x) (7)) x)
+| |(evaluate ((2 x ^ 3) (6 x ^ 2) (3 x) (7)) x)
+| | (evaluate ((6 x ^ 2) (3 x) (7)) x)
+| | |(evaluate ((3 x) (7)) x)
+| | | (evaluate ((7)) x)
+| | | |(evaluate () x)
+| | | |0
+| | | |(evaluate (7) x)
+Exception in *: x is not a number
+Type (debug) to enter the debugger.
+> (load "C:/Users/Brandon/Documents/GitHub/CS-152/Assignment-3/InfixDifferentiator.lisp")
+> (evaluate f x)
+60
+> (load "C:/Users/Brandon/Documents/GitHub/CS-152/Assignment-3/InfixDifferentiator.lisp")
+> (evaluate f x)
+Exception in *: x is not a number
+Type (debug) to enter the debugger.
+> (trace evaluate)
+(evaluate)
+> (trace multiply)
+(multiply)
+> (trace evaluate-exponent)
+(evaluate-exponent)
+> (evaluate f x)
+|(evaluate (3 a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7) 2)
+|(evaluate ((3 a x ^ 5) (b x ^ 4) (2 x ^ 3) (6 x ^ 2) (3 x) (7)) x)
+| (evaluate ((b x ^ 4) (2 x ^ 3) (6 x ^ 2) (3 x) (7)) x)
+| |(evaluate ((2 x ^ 3) (6 x ^ 2) (3 x) (7)) x)
+| | (evaluate ((6 x ^ 2) (3 x) (7)) x)
+| | |(evaluate ((3 x) (7)) x)
+| | | (evaluate ((7)) x)
+| | | |(evaluate () x)
+| | | |0
+| | | |(evaluate (7) x)
+| | | | (evaluate-exponent x (7))
+| | | | x
+| | | | (multiply (7))
+| | | | |(multiply ())
+| | | | |1
+| | | | 7
+Exception in *: x is not a number
+Type (debug) to enter the debugger.
+> 
