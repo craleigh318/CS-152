@@ -153,21 +153,22 @@
 (define x 2)
 (define a 3)
 (define b 4)
-(define f '(5 a x ^ 2))
+(define f '(3 a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7))
 ;
 ; Evaluate x^n. This works I think
 (define evaluate-exponent
-    (lambda (x lst)
-      (cond
-        ((equal? '^ (car (after 'x lst))) (expt x (cadr (after 'x lst))))
-        )))
+   (lambda (x lst)
+     (cond
+       ((not (pair? (after 'x lst))) x)
+       ((equal? '^ (car (after 'x lst))) (expt x (cadr (after 'x lst))))
+       )))
 ;
 ; Multiply multiple coefficients.
 (define multiply
     (lambda (lst)
       (if (or (null? lst) (not (integer? (car lst))))
           1
-          (* (car lst) (multiply (cdr lst))))))
+          (* (eval (car lst)) (multiply (cdr lst))))))
 
 ; Return the evaluation of function f with respect to x.
 ;(map eval f needs to be added to upto x f)
@@ -175,9 +176,9 @@
   (lambda (f x)
     (cond
       ((null? f) 0)
-      ((member '+ f) (evaluate (terminize f) x))
+      ((member? '+ f) (evaluate (terminize f) 'x))
       ((list? (car f)) (+ (evaluate (car f) x) (evaluate (cdr f) x)))
-      (else (* (multiply (upto x (map (eval f)))) (evaluate-exponent x f)))
+      (else (* (multiply (map eval (upto 'x f))) (evaluate-exponent x f)))
       )))
 ;
 ; Return the derivative of function f with respect to x.
