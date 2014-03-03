@@ -155,6 +155,7 @@
 (define evaluate-exponent
    (lambda (x lst)
      (cond
+       ((not (member? 'x)) (car lst))
        ((not (pair? (after 'x lst))) x)
        ((equal? '^ (car (after 'x lst))) (expt x (cadr (after 'x lst))))
        )))
