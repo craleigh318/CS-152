@@ -151,13 +151,12 @@
 ;
 ; ==New Code==
 ;
-; Evaluate x^n. This works I think
+; Evaluate x^n. lst is the list containing (^ n) and x is the value of x
 (define evaluate-exponent
-   (lambda (x lst)
+   (lambda (lst)
      (cond
-       ((not (member? 'x)) (car lst))
-       ((not (pair? (after 'x lst))) x)
-       ((equal? '^ (car (after 'x lst))) (expt x (cadr (after 'x lst))))
+       ((null? lst) 1)
+       (else (expt (eval 'x) (cadr lst)))
        )))
 ;
 ; Multiply multiple coefficients.
@@ -170,19 +169,24 @@
 ; Return the evaluation of function f with respect to x.
 ;(map eval f needs to be added to upto x f)
 (define evaluate
-  (lambda (f x)
+  (lambda (lst x)
     (cond
-      ((null? f) 0)
-      ((member? '+ f) (evaluate (terminize f) 'x))
-      ((list? (car f)) (+ (evaluate (car f) x) (evaluate (cdr f) x)))
-      (else (* (multiply (map eval (upto 'x f))) (evaluate-exponent x f)))
+      ((null? lst) 0)
+      ((member? '+ lst) (evaluate (terminize lst) 'x))
+      ((list? (car lst)) (+ (evaluate (car lst) x) (evaluate (cdr lst) x)))
+      (else (* (multiply (map eval (upto 'x lst))) (evaluate-exponent (after 'x lst))))
       )))
 ;
 ; Return the derivative of function f with respect to x.
 ;
 (define evaluate-deriv
-  (lambda (f x)
+  (lambda (lst x)
     (cond
-    ((null? f) '())
-    ((evaluate (deriv f x) x))
+    ((null? lst) '())
+    ((evaluate (deriv lst x) x))
     )))
+
+
+(trace multiply)
+(trace evaluate)
+(trace evaluate-exponent)

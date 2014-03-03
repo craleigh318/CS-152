@@ -1,5 +1,5 @@
 ; By Christopher Raleigh and Brandon Rossi
-;
+
 (define x 2)
 (define a 3)
 (define b 4)
@@ -7,9 +7,10 @@
 (define g '(5 a x ^ 4 + 3 b x ^ 3))
 (define h '(5 a x ^ 2))
 (define i '(5 a))
-(define l '(x ^ 2))
-;
-;Give the wrong answer
 (define j '(5 a x))
 (define k '(x))
+(define l '(x ^ 2))
 
+(trace multiply)
+(trace evaluate)
+(trace evaluate-exponent)

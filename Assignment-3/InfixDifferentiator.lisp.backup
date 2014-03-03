@@ -150,15 +150,12 @@
 )))
 ;
 ; ==New Code==
-(define x 2)
-(define a 3)
-(define b 4)
-(define f '(3 a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7))
 ;
 ; Evaluate x^n. This works I think
 (define evaluate-exponent
    (lambda (x lst)
      (cond
+       ((not (member? 'x)) (car lst))
        ((not (pair? (after 'x lst))) x)
        ((equal? '^ (car (after 'x lst))) (expt x (cadr (after 'x lst))))
        )))
