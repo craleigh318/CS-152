@@ -156,7 +156,7 @@
    (lambda (lst x)
      (cond
        ((null? lst) 1)
-       (else (expt (eval x) (cadr lst)))
+       (else (expt x (cadr lst)))
        )))
 ;
 ; Multiply multiple coefficients.
@@ -169,12 +169,12 @@
 ; Return the evaluation of function f with respect to x.
 ;(map eval f needs to be added to upto x f)
 (define evaluate
-  (lambda (lst x)
+  (lambda (lst val)
     (cond
       ((null? lst) 0)
       ((member? '+ lst) (evaluate (terminize lst) 'x))
       ((list? (car lst)) (+ (evaluate (car lst) x) (evaluate (cdr lst) x)))
-      ((and (null? (after 'x lst)) (member? 'x lst)) (* (multiply (map eval (upto 'x lst))) (eval 'x)))
+      ((and (null? (after 'x lst)) (member? 'x lst)) (* (multiply (map eval (upto 'x lst))) (eval (cadr lst))))
       (else (* (multiply (map eval (upto 'x lst))) (evaluate-exponent (after 'x lst) x)))
       )))
 ;
