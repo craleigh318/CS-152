@@ -1,3 +1,6 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 3: Program.ss ========
+;
 ; By Christopher Raleigh and Brandon Rossi
 ;
 (define a 1)
