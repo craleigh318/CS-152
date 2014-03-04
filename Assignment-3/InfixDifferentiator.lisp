@@ -184,10 +184,12 @@
   (lambda (f x)
     (cond
     ((null? f) f)
-    ((evaluate (deriv f x) x))
+    ((evaluate (deriv f 'x) x))
     )))
 
 
 (trace multiply)
 (trace evaluate)
 (trace evaluate-exponent)
+(trace evaluate-deriv)
+(trace deriv)
