@@ -155,7 +155,7 @@
 (define evaluate-exponent
    (lambda (lst x)
      (cond
-       ((null? lst) 1)
+       ((null? lst) x)
        (else (expt x (eval (cadr lst))))
        )))
 ;
@@ -174,7 +174,8 @@
       ((null? f) 0)
       ((member? '+ f) (evaluate (terminize f) x))
       ((list? (car f)) (+ (evaluate (car f) x) (evaluate (cdr f) x)))
-      (else (* (multiply (upto 'x f)) (evaluate-exponent (after 'x f) x)))
+      ((member? 'x f) (* (multiply (upto 'x f)) (evaluate-exponent (after 'x f) x)))
+      (else (car f))
     )))
 ;
 ; Return the derivative of function f with respect to x.
