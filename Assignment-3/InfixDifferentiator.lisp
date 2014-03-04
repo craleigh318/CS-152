@@ -153,10 +153,10 @@
 ;
 ; Evaluate x^n. lst is the list containing (^ n) and x is the value of x
 (define evaluate-exponent
-   (lambda (lst)
+   (lambda (lst x)
      (cond
        ((null? lst) 1)
-       (else (expt (eval 'x) (cadr lst)))
+       (else (expt (eval x) (cadr lst)))
        )))
 ;
 ; Multiply multiple coefficients.
@@ -174,7 +174,8 @@
       ((null? lst) 0)
       ((member? '+ lst) (evaluate (terminize lst) 'x))
       ((list? (car lst)) (+ (evaluate (car lst) x) (evaluate (cdr lst) x)))
-      (else (* (multiply (map eval (upto 'x lst))) (evaluate-exponent (after 'x lst))))
+      ((and (null? (after 'x lst)) (member? 'x lst)) (* (multiply (map eval (upto 'x lst))) (eval 'x)))
+      (else (* (multiply (map eval (upto 'x lst))) (evaluate-exponent (after 'x lst) x)))
       )))
 ;
 ; Return the derivative of function f with respect to x.
@@ -182,7 +183,7 @@
 (define evaluate-deriv
   (lambda (lst x)
     (cond
-    ((null? lst) '())
+    ((null? lst) lst)
     ((evaluate (deriv lst x) x))
     )))
 
