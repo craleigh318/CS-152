@@ -156,35 +156,34 @@
    (lambda (lst x)
      (cond
        ((null? lst) 1)
-       (else (expt x (cadr lst)))
+       (else (expt x (eval (cadr lst))))
        )))
 ;
 ; Multiply multiple coefficients.
 (define multiply
     (lambda (lst)
-      (if (or (null? lst) (not (integer? (car lst))))
+      (if (null? lst)
           1
           (* (eval (car lst)) (multiply (cdr lst))))))
 
 ; Return the evaluation of function f with respect to x.
 ;(map eval f needs to be added to upto x f)
 (define evaluate
-  (lambda (lst val)
+  (lambda (f x)
     (cond
-      ((null? lst) 0)
-      ((member? '+ lst) (evaluate (terminize lst) 'x))
-      ((list? (car lst)) (+ (evaluate (car lst) x) (evaluate (cdr lst) x)))
-      ((and (null? (after 'x lst)) (member? 'x lst)) (* (multiply (map eval (upto 'x lst))) (eval (cadr lst))))
-      (else (* (multiply (map eval (upto 'x lst))) (evaluate-exponent (after 'x lst) x)))
-      )))
+      ((null? f) 0)
+      ((member? '+ f) (evaluate (terminize f) x))
+      ((list? (car f)) (+ (evaluate (car f) x) (evaluate (cdr f) x)))
+      (else (* (multiply (upto 'x f)) (evaluate-exponent (after 'x f) x)))
+    )))
 ;
 ; Return the derivative of function f with respect to x.
 ;
 (define evaluate-deriv
-  (lambda (lst x)
+  (lambda (f x)
     (cond
-    ((null? lst) lst)
-    ((evaluate (deriv lst x) x))
+    ((null? f) f)
+    ((evaluate (deriv f x) x))
     )))
 
 

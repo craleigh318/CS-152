@@ -2,7 +2,7 @@
 ;
 (define a 3)
 (define b 4)
-(define f '(3 a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7))
+(define f '(a x ^ 5 + b x ^ 4 + 2 x ^ 3 + 6 x ^ 2 + 3 x + 7))
 (define g '(5 a x ^ 4 + 3 b x ^ 3))
 (define h '(5 a x ^ 2))
 (define i '(5 a))
