@@ -1,6 +1,6 @@
 %== CS 152 Section 05 Group: The Phantoms ==
 %======= Assignment 4: Program.pl ========
-%By Christopher Raleigh and Brandon Rossi 
+%By Christopher Raleigh and Brandon Rossi
 
 %Facts
 male(professor_plum).
@@ -9,7 +9,7 @@ male(mr_green).
 male(dr_black).
 female(miss_scarrlet).
 female(ms_peacock).
-female(mrs_white)
+female(mrs_white).
 
 person(professor_plum, botanist).
 person(colonel_mustard, colonel).
@@ -62,26 +62,24 @@ likes(mrs_white, cooking).
 
 %Rules
 married(Suspect1, Suspect2) :- shares_hobby(Suspect1, Suspect2, Hobby1),
-							   shares_hobby(Suspect1, Suspect2, Hobby2),
-							   Hobby1 \= Hobby2,
-							   Suspect1 \= miss_scarrlet,
-							   Suspect2 \= miss_scarrlet,
-							   Suspect1 \= Suspect2,
-							   opposite_sex(Suspect1, Suspect2).
-%shares any hobby	   
+	shares_hobby(Suspect1, Suspect2, Hobby2),
+	Suspect1 \= miss_scarrlet,
+	Suspect2 \= miss_scarrlet,
+	Suspect1 \= Suspect2,
+	opposite_sex(Suspect1, Suspect2).
+%shares any hobby
 shares_hobby(Suspect1, Suspect2) :- likes(Suspect1, Hobby1),
-									likes(Suspect2, Hobby1),
-									Suspect1 \= Suspect2.
+	likes(Suspect2, Hobby1),
+	Suspect1 \= Suspect2.
 %shares specific hobby
 shares_hobby(Suspect1, Suspect2, Hobby) :- likes(Suspect1, Hobby),
-										   likes(Suspect2, Hobby),
-										   Suspect1 \= Suspect2.
-										   
+	likes(Suspect2, Hobby),
+	Suspect1 \= Suspect2.
 opposite_sex(Suspect1, Suspect2) :- male(Suspect1),
-									female(Suspect2).
+	female(Suspect2).
 
 opposite_sex(Suspect1, Suspect2) :- male(Suspect2),
-									female(Suspect1).
+	female(Suspect1).
 
 preferred_weapon(Suspect1, revolver) :- person(Suspect1, colonel).
 preferred_weapon(Suspect1, knife) :- person(Suspect1, cook).
