@@ -20,6 +20,9 @@ person(mr_green, land_scaper).
 person(mrs_white, maid).
 person(dr_black, home_owner).
 
+is_resident(dr_black).
+is_resident(mrs_white).
+
 killed(dr_black, candlestick, ballroom).
 
 weapon(candlestick).
@@ -92,7 +95,8 @@ preferred_weapon(Suspect1, spanner) :- preferred_weapon(Suspect1, pipe).
 person(Suspect1, cook) :- person(Suspect1, maid).
 person(Suspect1, spanner) :- person(Suspect1, land_scaper).
 
-
 is_strong(Suspect1) :- male(Suspect1).
+
+is_visitor(Suspect1) :- \+ is_resident(Suspect1).
 
 is_suspect(Suspect1) :- Suspect1 \= dr_black.
