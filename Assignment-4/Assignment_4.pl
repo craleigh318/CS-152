@@ -7,14 +7,14 @@ male(professor_plum).
 male(colonel_mustard).
 male(mr_green).
 male(dr_black).
-female(miss_scarrlet).
+female(miss_scarlet).
 female(ms_peacock).
 female(mrs_white).
 
 person(professor_plum, botanist).
 person(colonel_mustard, colonel).
 person(colonel_mustard, cook).
-person(miss_scarrlet, assistant).
+person(miss_scarlet, assistant).
 person(ms_peacock, unknown).
 person(mr_green, land_scaper).
 person(mrs_white, maid).
@@ -52,8 +52,8 @@ likes(professor_plum, books).
 likes(colonel_mustard, cooking).
 likes(colonel_mustard, eating).
 likes(colonel_mustard, billiards).
-likes(miss_scarrlet, dancing).
-likes(miss_scarrlet, walking).
+likes(miss_scarlet, dancing).
+likes(miss_scarlet, walking).
 likes(ms_peacock, relaxing).
 likes(ms_peacock, plants).
 likes(ms_peacock, work).
@@ -67,8 +67,8 @@ likes(mrs_white, cooking).
 married(Suspect1, Suspect2) :- shares_hobby(Suspect1, Suspect2, Hobby1),
 	shares_hobby(Suspect1, Suspect2, Hobby2),
 	Hobby1 \= Hobby2,
-	Suspect1 \= miss_scarrlet,
-	Suspect2 \= miss_scarrlet,
+	Suspect1 \= miss_scarlet,
+	Suspect2 \= miss_scarlet,
 	Suspect1 \= Suspect2,
 	opposite_sex(Suspect1, Suspect2).
 %shares any hobby
@@ -91,8 +91,8 @@ preferred_weapon(Suspect1, candlestick) :- (likes(Suspect1, dancing);
 					   likes(Suspect1, relaxing)).
 preferred_weapon(Suspect1, pipe) :- is_strong(Suspect1).
 preferred_weapon(Suspect1, spanner) :- (person(Suspect1, botanist);
-				       preferred_weapon(Suspect1, pipe)).
-preferred_weapon(Suspect1, spanner) :- person(Suspect1, land_scaper).
+				       preferred_weapon(Suspect1, pipe);
+				       person(Suspect1, land_scaper)).
 
 person(Suspect1, cook) :- person(Suspect1, maid).
 
