@@ -115,3 +115,13 @@ likes(Suspect1, plants) :- person(Suspect1, botanist).
 
 preferred_location(Suspect1, Location1) :- likes(Suspect1, Hobby1),
 	location(Hobby1, Location1).
+
+jealous(Suspect1, Suspect2) :- loves(Suspect1, Suspect3),
+	married(Suspect3, Suspect2),
+	Suspect1 \= Suspect2,
+	Suspect1 \= Suspect3,
+	Suspect2 \= Suspect3.
+
+rivals(Suspect1, Suspect2) :- person(Suspect1, Profession),
+	person(Suspect2, Profession),
+	Suspect1 \= Suspect2.
