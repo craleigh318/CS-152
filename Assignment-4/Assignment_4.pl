@@ -20,6 +20,8 @@ person(mr_green, land_scaper).
 person(mrs_white, maid).
 person(dr_black, home_owner).
 
+uncommitted(miss_scarlet).
+
 is_resident(dr_black).
 is_resident(mrs_white).
 
@@ -64,17 +66,21 @@ likes(mrs_white, books).
 likes(mrs_white, cooking).
 
 %Rules
-married(Suspect1, Suspect2) :- shares_hobby(Suspect1, Suspect2, Hobby1),
+loves(Suspect1, Suspect2) :- shares_hobby(Suspect1, Suspect2, Hobby1),
 	shares_hobby(Suspect1, Suspect2, Hobby2),
-	Hobby1 \= Hobby2,
-	Suspect1 \= miss_scarlet,
-	Suspect2 \= miss_scarlet,
-	Suspect1 \= Suspect2,
+	Hobby1 \= Hobby2.
+
+
+married(Suspect1, Suspect2) :- loves(Suspect1, Suspect2),
+	\+ uncommitted(Suspect1),
+	\+ uncommitted(Suspect2),
 	opposite_sex(Suspect1, Suspect2).
+
 %shares any hobby
 shares_hobby(Suspect1, Suspect2) :- likes(Suspect1, Hobby1),
 	likes(Suspect2, Hobby1),
 	Suspect1 \= Suspect2.
+
 %shares specific hobby
 shares_hobby(Suspect1, Suspect2, Hobby) :- likes(Suspect1, Hobby),
 	likes(Suspect2, Hobby),
@@ -105,6 +111,7 @@ is_suspect(Suspect1) :- Suspect1 \= dr_black.
 
 likes(Suspect1, cleaning) :- person(Suspect1, maid).
 likes(Suspect1, cooking) :- person(Suspect1, cook).
+likes(Suspect1, plants) :- person(Suspect1, botanist).
 
 preferred_location(Suspect1, Location1) :- likes(Suspect1, Hobby1),
 	location(Hobby1, Location1).
