@@ -68,7 +68,8 @@ likes(mrs_white, cooking).
 %Rules
 loves(Suspect1, Suspect2) :- shares_hobby(Suspect1, Suspect2, Hobby1),
 	shares_hobby(Suspect1, Suspect2, Hobby2),
-	Hobby1 \= Hobby2.
+	Hobby1 \= Hobby2,
+	opposite_sex(Suspect1,Suspect2).
 
 
 married(Suspect1, Suspect2) :- loves(Suspect1, Suspect2),
