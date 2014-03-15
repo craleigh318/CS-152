@@ -85,3 +85,15 @@ true
 X = miss_scarlet ;
 X = mrs_white 
 
+15 ?- preferred_location(X, ballroom), preferred_weapon(Y, candlestick), loves(Z, dr_black).
+X = Y, Y = professor_plum,
+Z = miss_scarlet ;
+X = Y, Y = professor_plum,
+Z = miss_scarlet ;
+X = Y, Y = professor_plum,
+Z = mrs_white ;
+X = Y, Y = professor_plum,
+Z = mrs_white ;
+X = professor_plum,
+Y = Z, Z = miss_scarlet .
+
