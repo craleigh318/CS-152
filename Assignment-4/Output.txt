@@ -1,0 +1,87 @@
+1 ?- killed(X,Y,Z).
+X = dr_black,
+Y = candlestick,
+Z = ballroom.
+
+2 ?- married(dr_black, Y).
+Y = mrs_white .
+
+3 ?- shares_hobby(dr_black, X), is_suspect(X).
+X = professor_plum ;
+X = miss_scarlet ;
+X = professor_plum ;
+X = mrs_white ;
+X = colonel_mustard ;
+X = mr_green ;
+X = mrs_white ;
+X = ms_peacock ;
+X = mr_green ;
+X = professor_plum ;
+false.
+
+4 ?- jealous(X, Y).
+X = dr_black,
+Y = colonel_mustard .
+
+5 ?- jealous(X, Y), rivals(H, K).
+X = dr_black,
+Y = H, H = colonel_mustard,
+K = mrs_white 
+
+6 ?- is_suspect(colonel_mustard), preferred_weapon(colonel_mustard, Y).
+Y = revolver ;
+Y = knife ;
+Y = pipe ;
+Y = spanner ;
+false.
+
+
+7 ?- jealous(X, dr_black), preferred_location(K, ballroom).
+X = colonel_mustard,
+K = dr_black ;
+X = colonel_mustard,
+K = professor_plum ;
+X = colonel_mustard,
+K = miss_scarlet ;
+X = colonel_mustard,
+K = dr_black .
+
+8 ?- jealous(X, dr_black), opposite_sex(K, dr_black).
+X = colonel_mustard,
+K = miss_scarlet .
+
+9 ?- preferred_location(X, ballroom), preferred_weapon(X, candlestick).
+X = dr_black ;
+X = professor_plum ;
+X = professor_plum ;
+X = miss_scarlet ;
+
+10 ?- rivals(mrs_white, miss_scarlet).
+false.
+
+11 ?- shares_hobby(miss_scarlet, X), jealous(miss_scarlet, Y).
+X = professor_plum,
+Y = ms_peacock ;
+X = professor_plum,
+Y = ms_peacock ;
+X = professor_plum,
+Y = ms_peacock ;
+X = professor_plum,
+Y = ms_peacock ;
+X = professor_plum,
+Y = mrs_white ;
+X = professor_plum,
+Y = mrs_white ;
+X = professor_plum,
+Y = mrs_white .
+
+12 ?- jealous(miss_scarlet, mrs_white).
+true 
+
+13 ?- shares_hobby(miss_scarlet, mrs_white).
+true 
+
+14 ?- loves(dr_black, X).
+X = miss_scarlet ;
+X = mrs_white 
+
