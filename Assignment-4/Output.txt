@@ -1,3 +1,9 @@
+; == CS 152 Section 05 Group: The Phantoms ==
+; ======= Assignment 4: Program Output ========
+;
+; By Christopher Raleigh and Brandon Rossi
+;
+
 1 ?- killed(X,Y,Z).
 X = dr_black,
 Y = candlestick,
