@@ -106,3 +106,5 @@ X = Y, Y = professor_plum,
 Z = mrs_white ;
 X = professor_plum,
 Y = Z, Z = miss_scarlet .
+
+%	The murderer is Miss Scarlet!
