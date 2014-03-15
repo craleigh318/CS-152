@@ -75,17 +75,21 @@ Y = mrs_white ;
 X = professor_plum,
 Y = mrs_white .
 
-12 ?- jealous(miss_scarlet, mrs_white).
+12 ?- shares_hobby(X, mrs_white), jealous(Y, mrs_white), is_suspect(X), is_visitor(X).
+X = professor_plum,
+Y = miss_scarlet ;
+
+13 ?- jealous(miss_scarlet, mrs_white).
 true 
 
-13 ?- shares_hobby(miss_scarlet, mrs_white).
+14 ?- shares_hobby(miss_scarlet, mrs_white).
 true 
 
-14 ?- loves(dr_black, X).
+15 ?- loves(dr_black, X).
 X = miss_scarlet ;
 X = mrs_white 
 
-15 ?- preferred_location(X, ballroom), preferred_weapon(Y, candlestick), loves(Z, dr_black).
+16 ?- preferred_location(X, ballroom), preferred_weapon(Y, candlestick), loves(Z, dr_black).
 X = Y, Y = professor_plum,
 Z = miss_scarlet ;
 X = Y, Y = professor_plum,
@@ -96,4 +100,3 @@ X = Y, Y = professor_plum,
 Z = mrs_white ;
 X = professor_plum,
 Y = Z, Z = miss_scarlet .
-
