@@ -8,7 +8,7 @@ package intermediate;
  *
  * @author BrandonRossi
  */
-public class Intermediate_Code
+public class IntermediateCode
 {
 
 }

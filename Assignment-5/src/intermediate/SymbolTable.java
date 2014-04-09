@@ -9,7 +9,7 @@ import java.util.Hashtable;
  *
  * @author BrandonRossi
  */
-public class Symbol_Table
+public class SymbolTable
 {
     //Key for the symbol table
     private String entryNameKey;
@@ -21,7 +21,7 @@ public class Symbol_Table
     Hashtable<String , Hashtable> symbolTable;
     Hashtable<String, String> attributeTable;
 
-    public Symbol_Table()
+    public SymbolTable()
     {
         symbolTable = new Hashtable<>();
     }
