@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package intermediate;
+package frontend;
 
 /**
  *
  * @author BrandonRossi
  */
-public class Symbol_Table
+public class Token
 {
 
 }
