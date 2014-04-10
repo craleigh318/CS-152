@@ -12,13 +12,9 @@ public class ListNode
 {
 
     String element;
-    String car;
-    String cdr;
-
-    public ListNode()
-    {
-    }
-
+    ListNode car;
+    ListNode cdr;
+    
     public ListNode(String element)
     {
         this.element = element;

@@ -8,7 +8,7 @@ package frontend;
  */
 public class SchemeParser
 {
-    ListNode treeStructure;
+
     SchemeScanner scanner;
     public SchemeParser(SchemeScanner scanner)
     {
@@ -17,6 +17,7 @@ public class SchemeParser
 
     public ListNode parse(String token)
     {
+        ListNode treeStructure;
         String currentToken = scanner.nextToken();
         if(currentToken.equalsIgnoreCase(")"))
         {
@@ -25,7 +26,7 @@ public class SchemeParser
         if(currentToken.equalsIgnoreCase("("))
         {
             currentToken = scanner.nextToken();
-            treeStructure = new ListNode();
+            treeStructure = new ListNode(null);
         }
         treeStructure.car = currentToken;
         return null;
