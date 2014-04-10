@@ -10,5 +10,6 @@ package backend;
  */
 public class Executor
 {
-
+    public static void main(String[] args) {
+    }
 }

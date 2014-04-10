@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package intermediate;
-
+import frontend.ListNode;
 /**
  *
  * @author BrandonRossi
@@ -11,4 +11,8 @@ package intermediate;
 public class IntermediateCode
 {
 
+    public IntermediateCode()
+    {
+
+    }
 }

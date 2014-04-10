@@ -8,28 +8,28 @@ package frontend;
  */
 public class SchemeParser
 {
-
-    public ListNode parse(SchemeScanner scanner)
+    ListNode treeStructure;
+    SchemeScanner scanner;
+    public SchemeParser(SchemeScanner scanner)
     {
+        this.scanner = scanner;
+    }
+
+    public ListNode parse(String token)
+    {
+        String currentToken = scanner.nextToken();
+        if(currentToken.equalsIgnoreCase(")"))
+        {
+            return treeStructure;
+        }
+        if(currentToken.equalsIgnoreCase("("))
+        {
+            currentToken = scanner.nextToken();
+            treeStructure = new ListNode();
+        }
+        treeStructure.car = currentToken;
         return null;
     }
 
-    protected class ListNode
-    {
-        String element;
-        boolean isElement;
-        ListNode leftChild;
-        ListNode rightChild;
 
-        public ListNode(String str, boolean isElement)
-        {
-            this.isElement = isElement;
-            element = str;
-        }
-
-        public String toString()
-        {
-            return element;
-        }
-    }
 }
