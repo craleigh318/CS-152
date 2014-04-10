@@ -67,7 +67,11 @@ public class SchemeScanner {
             } else if (isParenthesis(nextChar)) {
                 returnString.concat(Character.toString(nextChar));
                 return returnString;
-            } else {
+            } else if (nextChar == fileScanner.next("[a-zA-Z]").charAt(0)){
+                returnString.concat(Character.toString(nextChar));
+                return nextToken(returnString);
+            } else if (nextChar == fileScanner.next("[0-9]").charAt(0))
+            {
                 returnString.concat(Character.toString(nextChar));
                 return nextToken(returnString);
             }
