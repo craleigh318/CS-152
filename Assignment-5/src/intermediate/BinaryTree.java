@@ -37,7 +37,8 @@ public class BinaryTree
             {
                 parent = currentNode;
                 //Set the left child
-                if(/*NOT SURE IF THIS IS RIGHT*/currentNode.leftChild == null)/*Some how have to determine how to set the child based on a key or the '(' and ')'*/
+                /*NOT SURE IF THIS IS RIGHT*/
+                if(currentNode.leftChild == null)/*Some how have to determine how to set the child based on a key or the '(' and ')'*/
                 {
                     currentNode = currentNode.leftChild;
                     if(currentNode == null)
@@ -60,34 +61,17 @@ public class BinaryTree
         }
     }
 
-    public void preOrderTraverse(Node currentNode)
+    /**
+     * If the next token is '(' then add a holder Node to the tree structure
+     * This is a place holder that lets the program know that this Node is the
+     * beginning of a list and the following is the contents of the list
+     */
+    public void addListNode()
     {
-        if(currentNode != null)
-        {
-            /*
-             * Need to have code for if the left child is not an element then open
-             * '(' otherwise print the element and dont forget to close the ')'
-             * Visit the root.
-             *      If the left subtree is not an element node, open a set of parentheses.
-             * Visit the left subtree.
-             *      If the left subtree is a leaf, print its element.
-             * Visit the right subtree.
-             */
-            if(!currentNode.leftChild.isElement)
-            {
-                System.out.print("(");
-                if(currentNode.leftChild == null)
-                {
-                    System.out.println(currentNode.element);
-                }
-                preOrderTraverse(currentNode.leftChild);
-                preOrderTraverse(currentNode.rightChild);
-                System.out.println(")");
-            }
-        }
+        this.addNode("(ListNode", false);
     }
 
-    private class Node
+    protected class Node
     {
         String element;
         boolean isElement;
