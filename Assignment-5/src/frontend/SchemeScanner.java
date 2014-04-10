@@ -14,22 +14,33 @@ import java.util.Scanner;
 public class SchemeScanner {
 
     private Scanner fileScanner;
-    private String[] tokenSet;
 
     /**
      * @param schemeSource the Scheme source file to scan
      */
     public SchemeScanner(File schemeSource) throws FileNotFoundException {
         fileScanner = new Scanner(schemeSource);
-        tokenSet = initializeTokenSet();
     }
 
     /*
-     * Adds all known tokens to token set.
+     * @return if char is parenthesis
      */
-    private String[] initializeTokenSet() {
-        String[] newTokenSet = {"(", "car", "cdr", ")"};
-        return newTokenSet;
+    boolean isParenthesis(char input) {
+        return ((input == '(') || (input == ')'));
+    }
+
+    /*
+     * @return if char is whitespace
+     */
+    boolean isWhitespace(char input) {
+        return (input == ' ');
+    }
+
+    /*
+     * @return if char is start of comment
+     */
+    boolean isComment(char input) {
+        return (input == ';');
     }
 
     /**
@@ -38,17 +49,30 @@ public class SchemeScanner {
      * @return the token as a String
      */
     public String nextToken() {
+        return nextToken("");
+    }
+
+    /**
+     * Scans the next token of the file.
+     *
+     * @return the token as a String
+     */
+    private String nextToken(String returnString) {
         //if not at end of file
         if (fileScanner.hasNext()) {
-            String nextString = fileScanner.next();
-            //if next string is a Scheme token
-            if (Arrays.binarySearch(tokenSet, nextString) >= 0) {
-                return nextString;
+            char nextChar = fileScanner.next(".").charAt(0);
+            if (isComment(nextChar)) {
+                fileScanner.nextLine();
+                return returnString;
+            } else if (isParenthesis(nextChar)) {
+                returnString.concat(Character.toString(nextChar));
+                return returnString;
             } else {
-                return nextToken();
+                returnString.concat(Character.toString(nextChar));
+                return nextToken(returnString);
             }
         } else {
-            return null;
+            return returnString;
         }
     }
 }
