@@ -14,33 +14,26 @@ import java.util.Scanner;
 public class SchemeScanner {
 
     private Scanner fileScanner;
+    private char[] specialTokenSet;
 
     /**
      * @param schemeSource the Scheme source file to scan
      */
     public SchemeScanner(File schemeSource) throws FileNotFoundException {
         fileScanner = new Scanner(schemeSource);
+        specialTokenSet = initializeTokenSet();
     }
 
     /*
-     * @return if char is parenthesis
+     * Adds all known tokens to token set.
      */
-    boolean isParenthesis(char input) {
-        return ((input == '(') || (input == ')'));
+    private char[] initializeTokenSet() {
+        char[] newTokenSet = {'(', ')', '\'', ' '};
+        return newTokenSet;
     }
 
-    /*
-     * @return if char is whitespace
-     */
-    boolean isWhitespace(char input) {
-        return (input == ' ');
-    }
-
-    /*
-     * @return if char is start of comment
-     */
-    boolean isComment(char input) {
-        return (input == ';');
+    private boolean isSpecialToken(char token) {
+        return (Arrays.binarySearch(specialTokenSet, token) >= 0);
     }
 
     /**
@@ -49,30 +42,25 @@ public class SchemeScanner {
      * @return the token as a String
      */
     public String nextToken() {
-        return nextToken("");
-    }
-
-    /**
-     * Scans the next token of the file.
-     *
-     * @return the token as a String
-     */
-    private String nextToken(String returnString) {
         //if not at end of file
         if (fileScanner.hasNext()) {
             char nextChar = fileScanner.next(".").charAt(0);
-            if (isComment(nextChar)) {
+            //if comment
+            if (nextChar == ';') {
                 fileScanner.nextLine();
-                return returnString;
-            } else if (isParenthesis(nextChar)) {
-                returnString.concat(Character.toString(nextChar));
-                return returnString;
+                return nextToken();
+            } //if special token
+            else if (isSpecialToken(nextChar)) {
+                return Character.toString(nextChar);
             } else {
-                returnString.concat(Character.toString(nextChar));
-                return nextToken(returnString);
+                String returnString = Character.toString(nextChar);
+                while (fileScanner.hasNext("\\w")) {
+                    returnString = returnString.concat(fileScanner.next("."));
+                }
+                return returnString;
             }
         } else {
-            return returnString;
+            return null;
         }
     }
 }
