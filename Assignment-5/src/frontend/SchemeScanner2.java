@@ -6,7 +6,7 @@ package frontend;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -15,44 +15,76 @@ import java.util.Scanner;
  */
 public class SchemeScanner2
 {
+    private final String keyword = "KEYWORD";
+    private final String identifier = "IDENTIFIER";
+    private final String special_Symbol = "SPECIAL_SYMBOL";
+    private final String procedure = "PROCEDURE";
+
+    HashMap<String, String> key_Word_Map;
+    HashMap<String, String> special_Symbol_Map;
 
     private Scanner fileScanner;
 
-    /**
-     * @param schemeSource the Scheme source file to scan
-     */
     public SchemeScanner2(File schemeSource) throws FileNotFoundException
     {
         fileScanner = new Scanner(schemeSource);
+        key_Word_Map = new HashMap<>();
+        special_Symbol_Map = new HashMap<>();
+        setUpMaps();
     }
 
     public String nextToken()
     {
         String token = "";
-        if(fileScanner.hasNext())
+        while(fileScanner.hasNext())
         {
-            if(fileScanner.next(".").charAt(0) == '(')
+            Character currentToken = fileScanner.findInLine(".").charAt(0);
+            if(currentToken.equals('('))
             {
-                token = Character.toString(fileScanner.next(".").charAt(0));
-                return token;
+                token = Character.toString(currentToken);
+                System.out.println("This is the beginning of a list " + token);
+                token = "";
+                continue;
             }
-            else if (Character.isLetter(fileScanner.next(".").charAt(0)))
+            else if(currentToken.equals(')'))
             {
-                while(fileScanner.next(".").charAt(0) != ' ')
+                token = Character.toString(currentToken);
+                System.out.println("This is the end of a list " + token);
+                token = "";
+                continue;
+            }
+            else if(Character.isAlphabetic(currentToken))
+            {
+                if (currentToken.isAlphabetic(currentToken))
                 {
-                    token.concat(Character.toString(fileScanner.next(".").charAt(0)));
+                    token += currentToken;
+//                    currentToken = fileScanner.findInLine(".").charAt(0);
                 }
-                return token;
+                System.out.println("The Current Toke is " + token);
+                token = "";
+                continue;
             }
-            else if (Character.isDigit(fileScanner.next(".").charAt(0)))
-            {
-                while(fileScanner.next(".").charAt(0) != ' ')
-                {
-                    token.concat(Character.toString(fileScanner.next(".").charAt(0)));
-                }
-                return token;
-            }
+
+
+
+
+
         }
+
         return token;
     }
+
+
+
+
+    private void setUpMaps()
+    {
+        key_Word_Map.put("and", keyword);
+        key_Word_Map.put("begin", keyword);
+
+        special_Symbol_Map.put("+", special_Symbol);
+
+    }
+
+
 }
