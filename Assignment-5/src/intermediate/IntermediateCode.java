@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package intermediate;
-import frontend.ListNode;
+import frontend.Token;
 /**
  *
  * @author BrandonRossi
