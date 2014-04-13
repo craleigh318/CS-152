@@ -1,23 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package intermediate;
+
+import java.util.HashSet;
 
 /**
  *
  * @author BrandonRossi
+ * @author Christopher Raleigh
  */
-public class IntermediateCode
-{
-    Tree root;
-    public IntermediateCode()
-    {
-        root = new Tree();
+public class IntermediateCode {
+
+    HashSet<Tree> roots;
+
+    public IntermediateCode() {
+        roots = new HashSet<>();
     }
 
-    public Tree getTree()
-    {
-        return root;
+    /**
+     * 
+     * @return the lists of the Scheme source as Trees
+     */
+    public HashSet<Tree> getTrees() {
+        return roots;
     }
 }
