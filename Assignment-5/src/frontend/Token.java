@@ -39,6 +39,12 @@ public class Token
             case PROCEDURE:
                 this.type = "PROCEDURE";
                 break;
+            case END_OF_INPUT:
+                this.type = "END_OF_INPUT";
+                break;
+            case ERROR:
+                this.type = "ERROR";
+                break;
 
         }
 

@@ -1,36 +1,33 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package frontend;
-
+import intermediate.IntermediateCode;
+import intermediate.Node;
 /**
- * SchemeParser parses Scheme code.
  *
- * @author Christopher Raleigh
- * @author Brandon Rossi
+ * @author BrandonRossi
  */
 public class SchemeParser
 {
 
-    SchemeScanner scanner;
-    public SchemeParser(SchemeScanner scanner)
-    {
-        this.scanner = scanner;
-    }
+   IntermediateCode inter_Code;
+   public SchemeParser(IntermediateCode intCode)
+   {
+       inter_Code = intCode;
 
-//    public ListNode parse(String token)
-//    {
-//        ListNode treeStructure;
-//        String currentToken = scanner.nextToken();
-//        if(currentToken.equalsIgnoreCase(")"))
-//        {
-//            return treeStructure;
-//        }
-//        if(currentToken.equalsIgnoreCase("("))
-//        {
-//            currentToken = scanner.nextToken();
-//            treeStructure = new ListNode(null);
-//        }
-//        treeStructure.car = currentToken;
-//        return null;
-//    }
+   }
 
+   public void setUpTree()
+   {
+       Node temp = buildTree();
+       inter_Code.getTree().setroot(temp);
+   }
+
+   private Node buildTree()
+   {
+       return null;
+   }
 
 }

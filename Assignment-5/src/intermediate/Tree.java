@@ -8,16 +8,21 @@ package intermediate;
  *
  * @author BrandonRossi
  */
-public class IntermediateCode
+public class Tree
 {
-    Tree root;
-    public IntermediateCode()
+    public Node root;
+
+    public Tree()
     {
-        root = new Tree();
     }
 
-    public Tree getTree()
+    public Node getroot()
     {
         return root;
+    }
+
+    public void setroot(Node the_Whole_Tree)
+    {
+        root = the_Whole_Tree;
     }
 }

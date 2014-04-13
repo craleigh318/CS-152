@@ -43,10 +43,61 @@ public class SchemeScanner2
         try
         {
             String currentToken = fileScanner.next();
+
+            if(currentToken.equals("("))
+            {
+                return new Token("(", Token.Type.SPECIAL_SYMBOL);
+            }
+            else if(currentToken.equals(")"))
+            {
+                return new Token(")", Token.Type.SPECIAL_SYMBOL);
+            }
+            else if(is_Key_Word(currentToken))
+            {
+                return new Token(currentToken, Token.Type.KEYWORD);
+            }
+            else if(is_Procedure(currentToken))
+            {
+                return new Token(currentToken, Token.Type.PROCEDURE);
+            }
+            else if(is_Special_Symbol(currentToken))
+            {
+                return new Token(currentToken, Token.Type.SPECIAL_SYMBOL);
+            }
+            else if(currentToken.equals("'("))
+            {
+                String tokenName = currentToken;
+                while(!currentToken.equals(")"))
+                {
+                    currentToken = fileScanner.next();
+                    tokenName += currentToken + " ";
+                }
+
+                int index = tokenName.lastIndexOf(" ) ");
+                if(index != -1)
+                {
+                    tokenName = tokenName.substring(0, index) + ")";
+                }
+                else
+                {
+                    tokenName = tokenName.substring(0, tokenName.length()-2) + ")";
+                }
+
+                return new Token(tokenName, Token.Type.IDENTIFIER);
+            }
+            else if(Character.isDigit(currentToken.charAt(0)))
+            {
+                return new Token(currentToken, Token.Type.NUMBER);
+            }
+
+
+
+
+
             return new Token(currentToken, Token.Type.IDENTIFIER);
         } catch (NoSuchElementException e)
         {
-            return new Token("ERROR", Token.Type.ERROR);
+            return new Token("END OF INPUT", Token.Type.END_OF_INPUT);
         }
     }
 

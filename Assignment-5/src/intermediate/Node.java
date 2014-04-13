@@ -4,20 +4,23 @@
  */
 package intermediate;
 
+import frontend.Token;
+
 /**
  *
  * @author BrandonRossi
  */
-public class IntermediateCode
+public class Node
 {
-    Tree root;
-    public IntermediateCode()
+    Token tokenLeft;
+    Token tokenRight;
+    Node left;
+    Node right;
+    public Node()
     {
-        root = new Tree();
+        tokenLeft = null;
     }
 
-    public Tree getTree()
-    {
-        return root;
-    }
+
+
 }
