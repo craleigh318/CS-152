@@ -8,21 +8,26 @@ package intermediate;
  *
  * @author BrandonRossi
  */
-public class Tree
-{
+public class Tree {
+
     public Node root;
 
-    public Tree()
-    {
+    public Tree() {
     }
 
-    public Node getroot()
-    {
+    public Node getroot() {
         return root;
     }
 
-    public void setroot(Node the_Whole_Tree)
-    {
+    public void setroot(Node the_Whole_Tree) {
         root = the_Whole_Tree;
+    }
+
+    /**
+     * Not yet implemented.
+     * @return 
+     */
+    public Tree addBranch() {
+        throw new UnsupportedOperationException();
     }
 }
