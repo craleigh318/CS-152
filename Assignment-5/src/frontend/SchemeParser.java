@@ -13,11 +13,11 @@ import java.util.Stack;
  * @author Christopher Raleigh
  */
 public class SchemeParser {
-
+    
     IntermediateCode inter_Code;
     SchemeScanner2 scanner;
-    Stack<Tree> currentTree;
-
+    Stack<Node> currentTree;
+    
     public SchemeParser(IntermediateCode intCode, File file) throws FileNotFoundException {
         inter_Code = intCode;
         scanner = new SchemeScanner2(file);
@@ -50,7 +50,8 @@ public class SchemeParser {
         if (currentTree == null) {
             currentTree = new Stack<>();
         } else {
-            currentTree.push(new Tree());
+            Node newNode = currentTree.get(currentTree.size()).addBranch();
+            currentTree.push(newNode);
         }
     }
 
@@ -58,13 +59,12 @@ public class SchemeParser {
      * Ends a Scheme list.
      */
     private void endList() {
+        Node outerList = currentTree.pop();
         if (currentTree.empty()) {
-            inter_Code.getTrees().add(currentTree.elementAt(0));
-        } else {
-            currentTree.pop();
+            inter_Code.getTrees().add(new Tree(outerList));
         }
     }
-
+    
     private Node buildTree() {
         return null;
     }

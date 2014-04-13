@@ -9,18 +9,25 @@ import frontend.Token;
 /**
  *
  * @author BrandonRossi
+ * @author Christopher Raleigh
  */
-public class Node
-{
+public class Node {
+
     Token tokenLeft;
     Token tokenRight;
     Node left;
     Node right;
-    public Node()
-    {
+
+    public Node() {
         tokenLeft = null;
     }
 
-
-
+    /**
+     * Not yet implemented.
+     *
+     * @return
+     */
+    public Node addBranch() {
+        throw new UnsupportedOperationException();
+    }
 }

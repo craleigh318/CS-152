@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package intermediate;
 
 /**
@@ -15,19 +11,15 @@ public class Tree {
     public Tree() {
     }
 
+    public Tree(Node root) {
+        this.root = root;
+    }
+
     public Node getroot() {
         return root;
     }
 
     public void setroot(Node the_Whole_Tree) {
         root = the_Whole_Tree;
-    }
-
-    /**
-     * Not yet implemented.
-     * @return 
-     */
-    public Tree addBranch() {
-        throw new UnsupportedOperationException();
     }
 }
