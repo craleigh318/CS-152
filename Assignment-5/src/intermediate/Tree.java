@@ -3,6 +3,8 @@ package intermediate;
 /**
  *
  * @author BrandonRossi
+ * @author Christopher Raleigh
+ * @deprecated Use SchemeList instead.
  */
 public class Tree {
 

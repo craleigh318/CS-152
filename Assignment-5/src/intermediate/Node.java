@@ -10,6 +10,7 @@ import frontend.Token;
  *
  * @author BrandonRossi
  * @author Christopher Raleigh
+ * @deprecated Use SchemeListItem instead.
  */
 public class Node {
 

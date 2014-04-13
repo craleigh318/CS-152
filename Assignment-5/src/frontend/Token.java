@@ -1,15 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package frontend;
+
+import intermediate.SchemeList;
+import intermediate.SchemeListItem;
 
 /**
  *
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class Token {
+public class Token implements SchemeListItem {
 
     private String name;
     private Type type;
@@ -32,5 +31,15 @@ public class Token {
     public Type getType() {
         return type;
         //System.out.println("Token Type " + this.type);
+    }
+
+    @Override
+    public SchemeListItem car() {
+        return this;
+    }
+
+    @Override
+    public SchemeList cdr() {
+        return null;
     }
 }
