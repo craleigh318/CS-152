@@ -1,6 +1,7 @@
 package intermediate;
 
 /**
+ * Allows this object to be added to Scheme lists.
  *
  * @author Christopher Raleigh
  * @author Brandon Rossi

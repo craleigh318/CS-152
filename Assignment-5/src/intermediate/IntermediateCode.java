@@ -9,17 +9,17 @@ import java.util.HashSet;
  */
 public class IntermediateCode {
 
-    HashSet<Tree> roots;
+    HashSet<SchemeList> roots;
 
     public IntermediateCode() {
         roots = new HashSet<>();
     }
 
     /**
-     * 
-     * @return the lists of the Scheme source as Trees
+     *
+     * @return the lists of the Scheme source
      */
-    public HashSet<Tree> getTrees() {
+    public HashSet<SchemeList> getLists() {
         return roots;
     }
 }

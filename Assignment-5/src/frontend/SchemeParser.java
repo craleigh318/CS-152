@@ -1,8 +1,7 @@
 package frontend;
 
 import intermediate.IntermediateCode;
-import intermediate.Node;
-import intermediate.Tree;
+import intermediate.SchemeList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Stack;
@@ -13,15 +12,15 @@ import java.util.Stack;
  * @author Christopher Raleigh
  */
 public class SchemeParser {
-    
+
     IntermediateCode inter_Code;
     SchemeScanner2 scanner;
-    Stack<Node> currentTree;
-    
+    Stack<SchemeList> currentTree;
+
     public SchemeParser(IntermediateCode intCode, File file) throws FileNotFoundException {
         inter_Code = intCode;
         scanner = new SchemeScanner2(file);
-        currentTree = null;
+        currentTree = new Stack<>();
     }
 
     /**
@@ -47,25 +46,20 @@ public class SchemeParser {
      * Adds a Scheme list.
      */
     private void startList() {
-        if (currentTree == null) {
-            currentTree = new Stack<>();
-        } else {
-            Node newNode = currentTree.get(currentTree.size()).addBranch();
-            currentTree.push(newNode);
+        SchemeList newNode = new SchemeList();
+        if (!currentTree.isEmpty()) {
+            currentTree.peek().add(newNode);
         }
+        currentTree.push(newNode);
     }
 
     /**
      * Ends a Scheme list.
      */
     private void endList() {
-        Node outerList = currentTree.pop();
+        SchemeList outerList = currentTree.pop();
         if (currentTree.empty()) {
-            inter_Code.getTrees().add(new Tree(outerList));
+            inter_Code.getLists().add(outerList);
         }
-    }
-    
-    private Node buildTree() {
-        return null;
     }
 }
