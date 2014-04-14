@@ -6,6 +6,7 @@ package backend;
 
 import frontend.SchemeParser;
 import intermediate.IntermediateCode;
+import intermediate.SymbolTable;
 import java.io.File;
 import java.util.Scanner;
 
@@ -38,7 +39,9 @@ public class Executor {
 
 
             IntermediateCode interCode = new IntermediateCode();
-            SchemeParser parser = new SchemeParser(interCode, file);
+            SymbolTable symbolTable = new SymbolTable();
+            SchemeParser parser = new SchemeParser(interCode, file, symbolTable);
+
 
             for (int i = 0; i < 10; i++)
             {

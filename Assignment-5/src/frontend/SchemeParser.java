@@ -2,6 +2,7 @@ package frontend;
 
 import intermediate.IntermediateCode;
 import intermediate.SchemeList;
+import intermediate.SymbolTable;
 import java.io.FileNotFoundException;
 import java.util.Stack;
 
@@ -16,6 +17,7 @@ public class SchemeParser {
     IntermediateCode inter_Code;
     SchemeScanner2 scanner;
     Stack<SchemeList> currentTree;
+    SymbolTable symbolTable;
 
     /**
      *
@@ -23,8 +25,9 @@ public class SchemeParser {
      * @param file Scheme source from which to read
      * @throws FileNotFoundException
      */
-    public SchemeParser(IntermediateCode intCode, String file) {
+    public SchemeParser(IntermediateCode intCode, String file, SymbolTable symbolT) {
         inter_Code = intCode;
+        symbolTable = symbolT;
         scanner = new SchemeScanner2(file);
         currentTree = new Stack<>();
 
@@ -37,7 +40,7 @@ public class SchemeParser {
         Token currentToken = scanner.nextToken();
         Token.Type currentTokenType = currentToken.getType();
         String currentTokenName = currentToken.getName();
-        System.out.println("Token Name " + currentTokenName + " Token Type " + currentTokenType);
+        symbolTable.addElement(currentTokenName, currentTokenType.toString());
         while (currentTokenType.equals(Token.Type.END_OF_INPUT)) {
             switch (currentTokenName) {
                 case "(":
