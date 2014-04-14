@@ -34,6 +34,11 @@ public class Token implements SchemeListItem {
     }
 
     @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
     public SchemeListItem car() {
         return this;
     }

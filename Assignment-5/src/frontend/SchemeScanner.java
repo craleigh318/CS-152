@@ -1,5 +1,7 @@
 package frontend;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -9,7 +11,7 @@ import java.util.Scanner;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class SchemeScanner2 {
+public class SchemeScanner {
 
     private final String keyword = "KEYWORD";
     private final String identifier = "IDENTIFIER";
@@ -20,7 +22,14 @@ public class SchemeScanner2 {
     HashMap<String, String> special_Symbol_Map;
     HashMap<String, String> procedure_Symbol_Map;
 
-    public SchemeScanner2(String file) {
+    public SchemeScanner(File file) throws FileNotFoundException {
+        fileScanner = new Scanner(file);
+        key_Word_Map = setUpKeywordMap();
+        special_Symbol_Map = setUpSpecialSymbolMap();
+        procedure_Symbol_Map = setUpProcedureSymbolMap();
+    }
+
+    public SchemeScanner(String file) {
         fileScanner = new Scanner(file);
         key_Word_Map = setUpKeywordMap();
         special_Symbol_Map = setUpSpecialSymbolMap();
