@@ -22,7 +22,7 @@ public class SchemeScanner2 {
     HashMap<String, String> special_Symbol_Map;
     HashMap<String, String> procedure_Symbol_Map;
 
-    public SchemeScanner2(File file) throws FileNotFoundException {
+    public SchemeScanner2(String file) {
         fileScanner = new Scanner(file);
         key_Word_Map = setUpKeywordMap();
         special_Symbol_Map = setUpSpecialSymbolMap();

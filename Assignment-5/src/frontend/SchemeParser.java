@@ -24,7 +24,7 @@ public class SchemeParser {
      * @param file Scheme source from which to read
      * @throws FileNotFoundException
      */
-    public SchemeParser(IntermediateCode intCode, File file) throws FileNotFoundException {
+    public SchemeParser(IntermediateCode intCode, String file) {
         inter_Code = intCode;
         scanner = new SchemeScanner2(file);
         currentTree = new Stack<>();
@@ -37,6 +37,7 @@ public class SchemeParser {
         Token currentToken = scanner.nextToken();
         Token.Type currentTokenType = currentToken.getType();
         String currentTokenName = currentToken.getName();
+        System.out.println("Token Name " + currentTokenName + " Token Type " + currentTokenType);
         while (currentTokenType.equals(Token.Type.END_OF_INPUT)) {
             switch (currentTokenName) {
                 case "(":

@@ -7,6 +7,7 @@ package backend;
 import frontend.SchemeParser;
 import frontend.SchemeScanner2;
 import frontend.Token;
+import intermediate.IntermediateCode;
 import java.io.File;
 import java.util.Scanner;
 
@@ -36,15 +37,19 @@ public class Executor {
 
             splitfile = splitFile.split("\n");
             //Passes the Array of lines to the SchemeScanner
-            SchemeScanner2 scanner = new SchemeScanner2(new File(file));
+
+
+            IntermediateCode interCode = new IntermediateCode();
+            SchemeParser parser = new SchemeParser(interCode, file);
 
             //Testing the scanner output
-            Token t = scanner.nextToken();
-            System.out.println(t.getName() + "          " + t.getType());
-            while (!t.getType().equals("END_OF_INPUT") && !t.getType().equals("ERROR")) {
-                t = scanner.nextToken();
-                System.out.println(t.getName() + "          " + t.getType());
-            }
+//            SchemeScanner2 scanner = new SchemeScanner2(file);
+//            Token t = scanner.nextToken();
+//            System.out.println(t.getName() + "          " + t.getType());
+//            while (!t.getType().equals("END_OF_INPUT") && !t.getType().equals("ERROR")) {
+//                t = scanner.nextToken();
+//                System.out.println(t.getName() + "          " + t.getType());
+//            }
 
         } catch (Exception e) {
             System.out.println("error " + e);
