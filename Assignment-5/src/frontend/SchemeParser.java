@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.Stack;
 
 /**
+ * Parses a Scheme source file.
  *
  * @author BrandonRossi
  * @author Christopher Raleigh
@@ -18,10 +19,10 @@ public class SchemeParser {
     Stack<SchemeList> currentTree;
 
     /**
-     * 
+     *
      * @param intCode intermediate code to which to compile
      * @param file Scheme source from which to read
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException
      */
     public SchemeParser(IntermediateCode intCode, File file) throws FileNotFoundException {
         inter_Code = intCode;
@@ -46,6 +47,15 @@ public class SchemeParser {
                     break;
             }
         }
+    }
+
+    /**
+     * Adds a token to the current innermost list.
+     *
+     * @param token the token to add
+     */
+    private void addToken(Token token) {
+        currentTree.peek().add(token);
     }
 
     /**
