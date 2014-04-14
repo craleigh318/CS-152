@@ -2,7 +2,6 @@ package frontend;
 
 import intermediate.IntermediateCode;
 import intermediate.SchemeList;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Stack;
 
@@ -28,6 +27,7 @@ public class SchemeParser {
         inter_Code = intCode;
         scanner = new SchemeScanner2(file);
         currentTree = new Stack<>();
+
     }
 
     /**
