@@ -5,8 +5,6 @@
 package backend;
 
 import frontend.SchemeParser;
-import frontend.SchemeScanner2;
-import frontend.Token;
 import intermediate.IntermediateCode;
 import java.io.File;
 import java.util.Scanner;
@@ -41,6 +39,11 @@ public class Executor {
 
             IntermediateCode interCode = new IntermediateCode();
             SchemeParser parser = new SchemeParser(interCode, file);
+
+            for (int i = 0; i < 10; i++)
+            {
+                parser.parse();
+            }
 
             //Testing the scanner output
 //            SchemeScanner2 scanner = new SchemeScanner2(file);
