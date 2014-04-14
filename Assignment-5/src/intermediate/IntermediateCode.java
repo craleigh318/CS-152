@@ -3,7 +3,8 @@ package intermediate;
 import java.util.HashSet;
 
 /**
- *
+ * Holds intermediate code for a back end to compile.
+ * 
  * @author BrandonRossi
  * @author Christopher Raleigh
  */

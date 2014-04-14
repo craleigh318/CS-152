@@ -17,6 +17,12 @@ public class SchemeParser {
     SchemeScanner2 scanner;
     Stack<SchemeList> currentTree;
 
+    /**
+     * 
+     * @param intCode intermediate code to which to compile
+     * @param file Scheme source from which to read
+     * @throws FileNotFoundException 
+     */
     public SchemeParser(IntermediateCode intCode, File file) throws FileNotFoundException {
         inter_Code = intCode;
         scanner = new SchemeScanner2(file);

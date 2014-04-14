@@ -13,6 +13,7 @@ import java.util.Scanner;
 /**
  *
  * @author BrandonRossi
+ * @author Christopher Raleigh
  */
 public class Executor {
 
