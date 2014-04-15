@@ -6,6 +6,7 @@ package backend;
 
 import frontend.SchemeParser;
 import intermediate.IntermediateCode;
+import intermediate.SchemeList;
 import intermediate.SymbolTable;
 import java.io.File;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class Executor {
     public static void main(String[] args) {
         try {
             String file = "";
-            File inputFile = new File("input.txt");
+            File inputFile = new File(args[0]);
             Scanner fileScanner = new Scanner(inputFile);
             String[] splitfile;
             String splitFile = "";
@@ -40,22 +41,17 @@ public class Executor {
 
             IntermediateCode interCode = new IntermediateCode();
             SymbolTable symbolTable = new SymbolTable();
-            SchemeParser parser = new SchemeParser(interCode, inputFile, symbolTable);
+            SchemeParser parser = new SchemeParser(interCode, file, symbolTable);
 
 
-            for (int i = 0; i < 10; i++)
+
+            parser.parse();
+            for(SchemeList s: interCode.getLists() )
             {
-                parser.parse();
+                System.out.println(s.toString());
             }
+            System.out.println("\nThe contents of the Symbol Table \n" + symbolTable.toString());
 
-            //Testing the scanner output
-//            SchemeScanner scanner = new SchemeScanner(file);
-//            Token t = scanner.nextToken();
-//            System.out.println(t.getName() + "          " + t.getType());
-//            while (!t.getType().equals("END_OF_INPUT") && !t.getType().equals("ERROR")) {
-//                t = scanner.nextToken();
-//                System.out.println(t.getName() + "          " + t.getType());
-//            }
 
         } catch (Exception e) {
             System.out.println("error " + e);

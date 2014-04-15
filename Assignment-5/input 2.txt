@@ -1,1 +1,1 @@
-(Define B (Lambda b))
+(Define school (lambda (a b)))

@@ -71,6 +71,10 @@ public class SchemeParser {
             else if(!(currentTokenType.equals(Token.Type.ERROR) || currentTokenType.equals(Token.Type.SPECIAL_SYMBOL)))
             {
                 addToken(currentToken);
+                if(currentTokenType.equals(Token.Type.IDENTIFIER))
+                {
+                    symbolTable.addElement(currentTokenName, null);
+                }
 
             }
             currentToken = scanner.nextToken();

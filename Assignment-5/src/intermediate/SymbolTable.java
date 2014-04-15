@@ -4,6 +4,7 @@
  */
 package intermediate;
 import java.util.Hashtable;
+import java.util.TreeMap;
 
 /**
  *
@@ -20,17 +21,31 @@ public class SymbolTable
 
     //Add a treemap to this
 
-    Hashtable<String , Hashtable> symbolTable;
-    Hashtable<String, String> attributeTable;
+    //Hashtable<String , Hashtable> symbolTable;
+    //Hashtable<String, String> attributeTable;
+    TreeMap<String, String> symbolMap;
 
     public SymbolTable()
     {
-        symbolTable = new Hashtable<>();
+        //symbolTable = new Hashtable<>();
+        symbolMap = new TreeMap<>();
     }
 
     public void addElement(String symbol_Key, String attribute_value)
     {
-        attributeTable.put(symbol_Key, attributeValue);
-        symbolTable.put(symbol_Key, attributeTable);
+        symbolMap.put(symbol_Key, "");
+        //attributeTable.put(symbol_Key, attributeValue);
+        //symbolTable.put(symbol_Key, attributeTable);
+    }
+
+    @Override
+    public String toString()
+    {
+        String temp = "";
+        for(String s: symbolMap.keySet())
+        {
+            temp = temp.concat(s + "\n");
+        }
+        return temp;
     }
 }
