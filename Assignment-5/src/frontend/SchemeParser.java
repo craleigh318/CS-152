@@ -20,6 +20,9 @@ public class SchemeParser {
     Stack<SchemeList> currentTree;
     SymbolTable symbolTable;
 
+    private int leftParenthese;
+    private int rightParenthese;
+
     /**
      *
      * @param intCode intermediate code to which to compile
@@ -31,6 +34,8 @@ public class SchemeParser {
         symbolTable = symbolT;
         scanner = new SchemeScanner(source);
         currentTree = new Stack<>();
+        leftParenthese = 0;
+        rightParenthese = 0;
     }
 
     /**
@@ -54,7 +59,17 @@ public class SchemeParser {
         Token currentToken = scanner.nextToken();
         Token.Type currentTokenType = currentToken.getType();
         String currentTokenName = currentToken.getName();
-        symbolTable.addElement(currentTokenName, currentTokenType.toString());
+        if(currentTokenName.equals("("))
+        {
+            leftParenthese++;
+            System.out.println("( total = " + leftParenthese);
+        }
+        else if(currentTokenName.equals(")"))
+        {
+            rightParenthese++;
+            System.out.println(") total = " + rightParenthese);
+        }
+//        symbolTable.addElement(currentTokenName, "test");
         while (currentTokenType.equals(Token.Type.END_OF_INPUT)) {
             switch (currentTokenName) {
                 case "(":
@@ -65,6 +80,18 @@ public class SchemeParser {
                     break;
             }
         }
+    }
+
+    /**
+     * For more then 1 procedure in a file check that the closing Parentheses
+     * are equal to the opening Parentheses
+     * @param leftPeren
+     * @param rightPeren
+     * @return
+     */
+    private boolean check_End_Of_Procedure(int leftPeren, int rightPeren)
+    {
+        return leftPeren == rightPeren;
     }
 
     /**

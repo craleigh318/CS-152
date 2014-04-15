@@ -40,7 +40,7 @@ public class Executor {
 
             IntermediateCode interCode = new IntermediateCode();
             SymbolTable symbolTable = new SymbolTable();
-            SchemeParser parser = new SchemeParser(interCode, file, symbolTable);
+            SchemeParser parser = new SchemeParser(interCode, inputFile, symbolTable);
 
 
             for (int i = 0; i < 10; i++)
@@ -49,7 +49,7 @@ public class Executor {
             }
 
             //Testing the scanner output
-//            SchemeScanner2 scanner = new SchemeScanner2(file);
+//            SchemeScanner scanner = new SchemeScanner(file);
 //            Token t = scanner.nextToken();
 //            System.out.println(t.getName() + "          " + t.getType());
 //            while (!t.getType().equals("END_OF_INPUT") && !t.getType().equals("ERROR")) {
