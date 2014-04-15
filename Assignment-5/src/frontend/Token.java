@@ -40,7 +40,7 @@ public class Token implements SchemeListItem {
 
     @Override
     public SchemeListItem car() {
-        return this;
+        return null;
     }
 
     @Override

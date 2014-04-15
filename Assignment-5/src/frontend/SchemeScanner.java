@@ -167,6 +167,8 @@ public class SchemeScanner
         newMap.put("null?", procedure);
         newMap.put("member?", procedure);
         newMap.put("list?", procedure);
+        newMap.put("not", procedure);
+        newMap.put("symbol?", keyword);
         return newMap;
     }
 }

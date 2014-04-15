@@ -1,26 +1,26 @@
 package intermediate;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
 /**
  * Holds intermediate code for a back end to compile.
- * 
+ *
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
 public class IntermediateCode {
 
-    HashSet<SchemeList> roots;
+    ArrayList<SchemeList> roots;
 
     public IntermediateCode() {
-        roots = new HashSet<>();
+        roots = new ArrayList<>();
     }
 
     /**
      *
      * @return the lists of the Scheme source
      */
-    public HashSet<SchemeList> getLists() {
+    public ArrayList<SchemeList> getLists() {
         return roots;
     }
 }

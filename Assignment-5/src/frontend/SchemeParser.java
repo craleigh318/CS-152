@@ -20,8 +20,6 @@ public class SchemeParser {
     Stack<SchemeList> currentTree;
     SymbolTable symbolTable;
 
-    private int leftParenthese;
-    private int rightParenthese;
 
     /**
      *
@@ -34,8 +32,7 @@ public class SchemeParser {
         symbolTable = symbolT;
         scanner = new SchemeScanner(source);
         currentTree = new Stack<>();
-        leftParenthese = 0;
-        rightParenthese = 0;
+
     }
 
     /**
@@ -59,26 +56,26 @@ public class SchemeParser {
         Token currentToken = scanner.nextToken();
         Token.Type currentTokenType = currentToken.getType();
         String currentTokenName = currentToken.getName();
-        if(currentTokenName.equals("("))
-        {
-            leftParenthese++;
-            System.out.println("( total = " + leftParenthese);
-        }
-        else if(currentTokenName.equals(")"))
-        {
-            rightParenthese++;
-            System.out.println(") total = " + rightParenthese);
-        }
+
 //        symbolTable.addElement(currentTokenName, "test");
-        while (currentTokenType.equals(Token.Type.END_OF_INPUT)) {
-            switch (currentTokenName) {
-                case "(":
-                    startList();
-                    break;
-                case ")":
-                    endList();
-                    break;
+        while (!currentTokenType.equals(Token.Type.END_OF_INPUT)) {
+
+            if(currentTokenName.equals("("))
+            {
+                startList();
             }
+            else if(currentTokenName.equals(")"))
+            {
+                endList();
+            }
+            else if(!(currentTokenType.equals(Token.Type.ERROR) || currentTokenType.equals(Token.Type.SPECIAL_SYMBOL)))
+            {
+                addToken(currentToken);
+
+            }
+            currentToken = scanner.nextToken();
+            currentTokenType = currentToken.getType();
+            currentTokenName = currentToken.getName();
         }
     }
 

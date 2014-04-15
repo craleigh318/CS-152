@@ -18,6 +18,8 @@ public class SymbolTable
     //value of the attribute table
     private String attributeValue;
 
+    //Add a treemap to this
+
     Hashtable<String , Hashtable> symbolTable;
     Hashtable<String, String> attributeTable;
 
