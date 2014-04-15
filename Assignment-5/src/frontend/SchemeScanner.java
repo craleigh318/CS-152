@@ -31,24 +31,19 @@ public class SchemeScanner
         procedure_Symbol_Map = setUpProcedureSymbolMap();
     }
 
-//    public SchemeScanner(String file)
-//    {
-//        fileScanner = new Scanner(file);
-//        key_Word_Map = setUpKeywordMap();
-//        special_Symbol_Map = setUpSpecialSymbolMap();
-//        procedure_Symbol_Map = setUpProcedureSymbolMap();
-//    }
+    public SchemeScanner(String file)
+    {
+        fileScanner = new Scanner(file);
+        key_Word_Map = setUpKeywordMap();
+        special_Symbol_Map = setUpSpecialSymbolMap();
+        procedure_Symbol_Map = setUpProcedureSymbolMap();
+    }
 
     public Token nextToken()
     {
         try
         {
-            String currentLine = fileScanner.nextLine();
-            currentLine = currentLine.replaceAll(";.*", " ");
-            currentLine = currentLine.replaceAll("\\(", "\\( ");
-            currentLine = currentLine.replaceAll("\\)", " \\) ");
-            Scanner currentLineScanner = new Scanner(currentLine);
-            String currentToken = currentLineScanner.next();
+            String currentToken = fileScanner.next();
 
             if (currentToken.equals("("))
             {
