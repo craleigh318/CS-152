@@ -20,7 +20,6 @@ public class SchemeParser {
     Stack<SchemeList> currentTree;
     SymbolTable symbolTable;
 
-
     /**
      *
      * @param intCode intermediate code to which to compile
@@ -49,8 +48,6 @@ public class SchemeParser {
 
     /**
      * Parses the Scheme source.
-     *
-     * TO DO: Add other tokens to switch case.
      */
     public void parse() {
         Token currentToken = scanner.nextToken();
@@ -60,19 +57,13 @@ public class SchemeParser {
 //        symbolTable.addElement(currentTokenName, "test");
         while (!currentTokenType.equals(Token.Type.END_OF_INPUT)) {
 
-            if(currentTokenName.equals("("))
-            {
+            if (currentTokenName.equals("(")) {
                 startList();
-            }
-            else if(currentTokenName.equals(")"))
-            {
+            } else if (currentTokenName.equals(")")) {
                 endList();
-            }
-            else if(!(currentTokenType.equals(Token.Type.ERROR) || currentTokenType.equals(Token.Type.SPECIAL_SYMBOL)))
-            {
+            } else if (!(currentTokenType.equals(Token.Type.ERROR) || currentTokenType.equals(Token.Type.SPECIAL_SYMBOL))) {
                 addToken(currentToken);
-                if(currentTokenType.equals(Token.Type.IDENTIFIER))
-                {
+                if (currentTokenType.equals(Token.Type.IDENTIFIER)) {
                     symbolTable.addElement(currentTokenName, null);
                 }
 
@@ -86,12 +77,12 @@ public class SchemeParser {
     /**
      * For more then 1 procedure in a file check that the closing Parentheses
      * are equal to the opening Parentheses
+     *
      * @param leftPeren
      * @param rightPeren
      * @return
      */
-    private boolean check_End_Of_Procedure(int leftPeren, int rightPeren)
-    {
+    private boolean check_End_Of_Procedure(int leftPeren, int rightPeren) {
         return leftPeren == rightPeren;
     }
 

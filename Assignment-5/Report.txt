@@ -1,0 +1,10 @@
+Christopher Raleigh
+Brandon Rossi
+
+We used an ArrayList to store trees in the order that they were added from the parser.
+
+The parser uses a Stack to keep track of the depth of a Scheme list so that lists can be nested in outer lists.
+
+Lists are binary trees that recursively creates new trees as items are added to the list.
+
+Finally, we used maps to seperate Scheme tokens by type, to make it easier to change the parser's behavior.

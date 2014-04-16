@@ -1,0 +1,21 @@
+(define.(deriv.((lambda.((poly.(var)).((let*.(((terms.((terminize.(poly)))).((deriv-term.((lambda.((term).((cond.(((null?.(term)).('())).(((not.((member?.(var.(term))))).('(0))).(((not.((member?.('^.(term))))).((upto.(var.(term))))).((else.((deriv-term-expo.(term.(var))))))))))))))).((diff.((map.(deriv-term.(terms)))))))).((remove-trailing-plus.((polyize.(diff)))))))))))))
+(define.(terminize.((lambda.((poly).((cond.(((null?.(poly)).('())).((else.((cons.((upto.('+.(poly))).((terminize.((after.('+.(poly)))))))))))))))))))
+
+The contents of the Symbol Table 
+'()
+'(0)
+'+
+'^
+after
+deriv
+deriv-term
+deriv-term-expo
+diff
+poly
+polyize
+remove-trailing-plus
+term
+terminize
+terms
+upto
+var
