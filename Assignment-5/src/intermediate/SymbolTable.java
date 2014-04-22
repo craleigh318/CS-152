@@ -25,6 +25,16 @@ public class SymbolTable {
         symbolMap = new HashMap<>();
     }
 
+    public SymbolTable(Map map)
+    {
+        symbolMap = map;
+    }
+
+    public void addAllEmelents(Map map)
+    {
+        symbolMap.putAll(map);
+    }
+
     /**
      * Adds a token to this symbol table.
      *
