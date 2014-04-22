@@ -18,10 +18,12 @@ public class SchemeScanner {
     private final String identifier = "IDENTIFIER";
     private final String special_Symbol = "SPECIAL_SYMBOL";
     private final String procedure = "PROCEDURE";
+    private final String scope_Keyword = "SCOPE_KEYWORD";
     Scanner fileScanner;
     HashMap<String, String> key_Word_Map;
     HashMap<String, String> special_Symbol_Map;
     HashMap<String, String> procedure_Symbol_Map;
+    HashMap<String, String> scope_Keyword_Map;
 
     /**
      *
@@ -33,6 +35,7 @@ public class SchemeScanner {
         key_Word_Map = setUpKeywordMap();
         special_Symbol_Map = setUpSpecialSymbolMap();
         procedure_Symbol_Map = setUpProcedureSymbolMap();
+        scope_Keyword_Map = setUpScopeKeyWordMap();
     }
 
     /**
@@ -64,7 +67,11 @@ public class SchemeScanner {
                 return new Token(currentToken, Token.Type.PROCEDURE);
             } else if (is_Special_Symbol(currentToken)) {
                 return new Token(currentToken, Token.Type.SPECIAL_SYMBOL);
-            } else if (currentToken.equals("'(")) {
+            } else if (is_Scope_Keyword(currentToken))
+            {
+                return new Token(currentToken, Token.Type.SCOPE_KEYWORD);
+            }
+            else if (currentToken.equals("'(")) {
                 String tokenName = currentToken;
                 while (!currentToken.equals(")")) {
                     currentToken = fileScanner.next();
@@ -129,6 +136,11 @@ public class SchemeScanner {
         return key_Word_Map.containsKey(key);
     }
 
+    private boolean is_Scope_Keyword(String key)
+    {
+        return scope_Keyword_Map.containsKey(key);
+    }
+
     /**
      *
      * @return a map of all of the keywords in Scheme
@@ -142,7 +154,7 @@ public class SchemeScanner {
         newMap.put("case", keyword);
         newMap.put("cond", keyword);
         newMap.put("cycle", keyword);
-        newMap.put("define", keyword);
+
         newMap.put("delay", keyword);
         newMap.put("delay-list-cons", keyword);
         newMap.put("do", keyword);
@@ -151,10 +163,8 @@ public class SchemeScanner {
         newMap.put("for", keyword);
         newMap.put("freeze", keyword);
         newMap.put("if", keyword);
-        newMap.put("lambda", keyword);
-        newMap.put("let*", keyword);
-        newMap.put("let", keyword);
-        newMap.put("letrec", keyword);
+
+
         newMap.put("macro", keyword);
         newMap.put("object-maker", keyword);
         newMap.put("or", keyword);
@@ -166,6 +176,17 @@ public class SchemeScanner {
         newMap.put("variable-case", keyword);
         newMap.put("while", keyword);
         newMap.put("wrap", keyword);
+        return newMap;
+    }
+
+    private HashMap<String, String> setUpScopeKeyWordMap()
+    {
+        HashMap<String, String> newMap = new HashMap<>();
+        newMap.put("define", scope_Keyword);
+        newMap.put("let*", scope_Keyword);
+        newMap.put("let", scope_Keyword);
+        newMap.put("letrec", scope_Keyword);
+        newMap.put("lambda", scope_Keyword);
         return newMap;
     }
 

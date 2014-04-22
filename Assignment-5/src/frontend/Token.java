@@ -19,7 +19,7 @@ public class Token implements SchemeListItem {
      */
     public static enum Type {
 
-        IDENTIFIER, KEYWORD, NUMBER, SPECIAL_SYMBOL, PROCEDURE, END_OF_INPUT, ERROR
+        IDENTIFIER, KEYWORD, SCOPE_KEYWORD ,NUMBER, SPECIAL_SYMBOL, PROCEDURE, END_OF_INPUT, ERROR
     }
 
     /**
