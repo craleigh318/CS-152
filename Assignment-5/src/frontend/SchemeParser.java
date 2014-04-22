@@ -55,6 +55,13 @@ public class SchemeParser {
         String currentTokenName = currentToken.getName();
         while (!currentTokenType.equals(Token.Type.END_OF_INPUT)) {
 
+            //if(currentTokenType == "SCOPE_KEYWORD"){}
+            /*
+             * Need to have a way to add a new symbolTable to the stack when a scope keyword is seen
+             * the next token after a scope Keyword and all tokens thereafter up the end of the program or the next scope keyword is
+             * to be added to the symboltable at that level
+             */
+
             if (currentTokenName.equals("(")) {
                 startList();
             } else if (currentTokenName.equals(")")) {

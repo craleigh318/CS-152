@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class IntermediateCode {
 
-    ArrayList<SchemeList> roots;
+    private ArrayList<SchemeList> roots;
 
     public IntermediateCode() {
         roots = new ArrayList<>();
