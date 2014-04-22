@@ -1,6 +1,7 @@
 package intermediate;
 
-import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Maps a token in Scheme with its assigned value.
@@ -17,13 +18,11 @@ public class SymbolTable {
     //value of the attribute table
     private String attributeValue;
     //Add a treemap to this
-    //Hashtable<String , Hashtable> symbolTable;
-    //Hashtable<String, String> attributeTable;
-    TreeMap<String, String> symbolMap;
+    Map<String, Object> symbolMap;
 
     public SymbolTable() {
         //symbolTable = new Hashtable<>();
-        symbolMap = new TreeMap<>();
+        symbolMap = new HashMap<>();
     }
 
     /**
@@ -32,10 +31,8 @@ public class SymbolTable {
      * @param symbol_Key the token to be added
      * @param attribute_value symbol_Key's value
      */
-    public void addElement(String symbol_Key, String attribute_value) {
-        symbolMap.put(symbol_Key, "");
-        //attributeTable.put(symbol_Key, attributeValue);
-        //symbolTable.put(symbol_Key, attributeTable);
+    public void addElement(String symbol_Key, Object attribute_value) {
+        symbolMap.put(symbol_Key, attribute_value);
     }
 
     @Override

@@ -53,8 +53,6 @@ public class SchemeParser {
         Token currentToken = scanner.nextToken();
         Token.Type currentTokenType = currentToken.getType();
         String currentTokenName = currentToken.getName();
-
-//        symbolTable.addElement(currentTokenName, "test");
         while (!currentTokenType.equals(Token.Type.END_OF_INPUT)) {
 
             if (currentTokenName.equals("(")) {
