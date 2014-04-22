@@ -78,7 +78,20 @@ public class SchemeScanner {
                 }
                 return new Token(tokenName, Token.Type.IDENTIFIER);
             } else if (Character.isDigit(currentToken.charAt(0))) {
-                return new Token(currentToken, Token.Type.NUMBER);
+                if(currentToken.length() == 1)
+                {
+                    return new Token(currentToken, Token.Type.NUMBER);
+                }
+                else
+                {
+                    for (int i = 1; i < currentToken.length(); i++)
+                    {
+                        if(!Character.isDigit(currentToken.charAt(i)) && currentToken.charAt(i) != '.')
+                        {
+                            return new Token(currentToken, Token.Type.ERROR);
+                        }
+                    }
+                }
             }
             return new Token(currentToken, Token.Type.IDENTIFIER);
         } catch (NoSuchElementException e) {
