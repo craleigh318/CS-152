@@ -11,9 +11,11 @@ import java.util.ArrayList;
 public class IntermediateCode {
 
     private ArrayList<SchemeList> roots;
+    private SymbolTableStack symbolTableStack;
 
     public IntermediateCode() {
         roots = new ArrayList<>();
+        symbolTableStack = new SymbolTableStack();
     }
 
     /**
