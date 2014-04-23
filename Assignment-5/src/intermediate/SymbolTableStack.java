@@ -25,4 +25,21 @@ public class SymbolTableStack
         globalTable.addAllEmelents(SymbolMapList.setUpSpecialSymbolMap());
         symbolTableStack.push(globalTable);
     }
+
+    public void pushSymbolTable(SymbolTable table)
+    {
+        symbolTableStack.push(table);
+    }
+
+    public SymbolTable popSymbolTable()
+    {
+        SymbolTable tempTable = symbolTableStack.pop();
+
+        return tempTable;
+    }
+
+    public void addToTopLevelsymbolTable(String name, String type /*Not sure what this variable type should be*/)
+    {
+        symbolTableStack.peek().addElement(type, type);
+    }
 }

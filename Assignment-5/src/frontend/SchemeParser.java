@@ -3,6 +3,7 @@ package frontend;
 import intermediate.IntermediateCode;
 import intermediate.SchemeList;
 import intermediate.SymbolTable;
+import intermediate.SymbolTableStack;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Stack;
@@ -19,6 +20,7 @@ public class SchemeParser {
     SchemeScanner scanner;
     Stack<SchemeList> currentTree;
     SymbolTable symbolTable;
+    SymbolTableStack symbolTableStack;
 
     /**
      *
@@ -26,11 +28,12 @@ public class SchemeParser {
      * @param source Scheme source file from which to read
      * @throws FileNotFoundException
      */
-    public SchemeParser(IntermediateCode intCode, File source, SymbolTable symbolT) throws FileNotFoundException {
+    public SchemeParser(IntermediateCode intCode, File source, SymbolTable symbolT, SymbolTableStack symbolStack) throws FileNotFoundException {
         interCode = intCode;
         symbolTable = symbolT;
         scanner = new SchemeScanner(source);
         currentTree = new Stack<>();
+        symbolTableStack = symbolStack;
 
     }
 
@@ -39,11 +42,12 @@ public class SchemeParser {
      * @param intCode intermediate code to which to compile
      * @param source Scheme source string from which to read
      */
-    public SchemeParser(IntermediateCode intCode, String source, SymbolTable symbolT) {
+    public SchemeParser(IntermediateCode intCode, String source, SymbolTable symbolT, SymbolTableStack symbolStack) {
         interCode = intCode;
         symbolTable = symbolT;
         scanner = new SchemeScanner(source);
         currentTree = new Stack<>();
+        symbolTableStack = symbolStack;
     }
 
     /**
@@ -60,7 +64,36 @@ public class SchemeParser {
              * Need to have a way to add a new symbolTable to the stack when a scope keyword is seen
              * the next token after a scope Keyword and all tokens thereafter up the end of the program or the next scope keyword is
              * to be added to the symboltable at that level
+             *
+             * NEED TO ADD A RECORD OF THE SYMBOLTABLE REFERENCE TO THE ROOT NODE OF THE TREE THAT IT WILL POINT TO
+             * AND A RECORD OF THE ROOT NODE TO THE SYMBOLTABLE
+             * (REFERENCE APRIL 7 LECTURE LAST SLIDE)
              */
+            if(currentTokenName.equalsIgnoreCase("DEFINE"))
+            {
+                SymbolTable newScope = new SymbolTable();
+                symbolTableStack.pushSymbolTable(newScope);
+            }
+            else if(currentTokenName.equalsIgnoreCase("LAMBDA"))
+            {
+                SymbolTable newScope = new SymbolTable();
+                symbolTableStack.pushSymbolTable(newScope);
+            }
+            else if(currentTokenName.equalsIgnoreCase("LET"))
+            {
+                SymbolTable newScope = new SymbolTable();
+                symbolTableStack.pushSymbolTable(newScope);
+            }
+            else if(currentTokenName.equalsIgnoreCase("LETREC"))
+            {
+                SymbolTable newScope = new SymbolTable();
+                symbolTableStack.pushSymbolTable(newScope);
+            }
+            else if(currentTokenName.equalsIgnoreCase("LET*"))
+            {
+                SymbolTable newScope = new SymbolTable();
+                symbolTableStack.pushSymbolTable(newScope);
+            }
 
             if (currentTokenName.equals("(")) {
                 startList();
@@ -69,7 +102,8 @@ public class SchemeParser {
             } else if (!(currentTokenType.equals(Token.Type.ERROR) || currentTokenType.equals(Token.Type.SPECIAL_SYMBOL))) {
                 addToken(currentToken);
                 if (currentTokenType.equals(Token.Type.IDENTIFIER)) {
-                    symbolTable.addElement(currentTokenName, null);
+
+                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType.toString());
                 }
 
             }

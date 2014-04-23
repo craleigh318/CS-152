@@ -4,6 +4,7 @@ import frontend.SchemeParser;
 import intermediate.IntermediateCode;
 import intermediate.SchemeList;
 import intermediate.SymbolTable;
+import intermediate.SymbolTableStack;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -46,7 +47,8 @@ public class Executor {
 
                 IntermediateCode interCode = new IntermediateCode();
                 SymbolTable symbolTable = new SymbolTable();
-                SchemeParser parser = new SchemeParser(interCode, file, symbolTable);
+                SymbolTableStack symbolTableStack = new SymbolTableStack();
+                SchemeParser parser = new SchemeParser(interCode, file, symbolTable, symbolTableStack);
 
 
 
