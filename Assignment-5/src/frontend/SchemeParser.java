@@ -21,6 +21,7 @@ public class SchemeParser {
     Stack<SchemeList> currentTree;
     SymbolTable symbolTable;
     SymbolTableStack symbolTableStack;
+    private SymbolTable referenceToTable;
 
     /**
      *
@@ -69,27 +70,11 @@ public class SchemeParser {
              * AND A RECORD OF THE ROOT NODE TO THE SYMBOLTABLE
              * (REFERENCE APRIL 7 LECTURE LAST SLIDE)
              */
-            if(currentTokenName.equalsIgnoreCase("DEFINE"))
-            {
-                SymbolTable newScope = new SymbolTable();
-                symbolTableStack.pushSymbolTable(newScope);
-            }
-            else if(currentTokenName.equalsIgnoreCase("LAMBDA"))
-            {
-                SymbolTable newScope = new SymbolTable();
-                symbolTableStack.pushSymbolTable(newScope);
-            }
-            else if(currentTokenName.equalsIgnoreCase("LET"))
-            {
-                SymbolTable newScope = new SymbolTable();
-                symbolTableStack.pushSymbolTable(newScope);
-            }
-            else if(currentTokenName.equalsIgnoreCase("LETREC"))
-            {
-                SymbolTable newScope = new SymbolTable();
-                symbolTableStack.pushSymbolTable(newScope);
-            }
-            else if(currentTokenName.equalsIgnoreCase("LET*"))
+            if(currentTokenName.equalsIgnoreCase("DEFINE")
+                    || currentTokenName.equalsIgnoreCase("LAMBDA")
+                    || currentTokenName.equalsIgnoreCase("LET")
+                    || currentTokenName.equalsIgnoreCase("LETREC")
+                    || currentTokenName.equalsIgnoreCase("LET*"))
             {
                 SymbolTable newScope = new SymbolTable();
                 symbolTableStack.pushSymbolTable(newScope);
@@ -103,7 +88,8 @@ public class SchemeParser {
                 addToken(currentToken);
                 if (currentTokenType.equals(Token.Type.IDENTIFIER)) {
 
-                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType.toString());
+                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType);
+                    referenceToTable = symbolTableStack.getSymbolTableStack().peek();
                 }
 
             }

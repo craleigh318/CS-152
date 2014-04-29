@@ -40,9 +40,11 @@ public class SymbolTable {
      *
      * @param symbol_Key the token to be added
      * @param attribute_value symbol_Key's value
+     * @return symbolmap object
      */
-    public void addElement(String symbol_Key, Object attribute_value) {
-        symbolMap.put(symbol_Key, attribute_value);
+    public Object addElement(String symbol_Key, Object attribute_value) {
+        return symbolMap.put(symbol_Key, attribute_value);
+
     }
 
     @Override

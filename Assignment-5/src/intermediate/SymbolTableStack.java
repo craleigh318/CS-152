@@ -7,6 +7,7 @@
 package intermediate;
 
 import frontend.SymbolMapList;
+import frontend.Token;
 import java.util.Stack;
 
 /**
@@ -16,6 +17,7 @@ import java.util.Stack;
 public class SymbolTableStack
 {
     private Stack<SymbolTable> symbolTableStack;
+    private SymbolTable referenceToTable;
     public SymbolTableStack()
     {
         symbolTableStack = new Stack<>();
@@ -38,8 +40,13 @@ public class SymbolTableStack
         return tempTable;
     }
 
-    public void addToTopLevelsymbolTable(String name, String type /*Not sure what this variable type should be*/)
+    public Stack<SymbolTable> getSymbolTableStack()
     {
-        symbolTableStack.peek().addElement(type, type);
+        return symbolTableStack;
+    }
+
+    public Object addToTopLevelsymbolTable(String name, Token.Type type)
+    {
+        return symbolTableStack.peek().addElement(name, type);
     }
 }
