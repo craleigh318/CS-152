@@ -17,7 +17,7 @@ import java.util.Stack;
 public class SymbolTableStack
 {
     private Stack<SymbolTable> symbolTableStack;
-    private SymbolTable referenceToTable;
+
     public SymbolTableStack()
     {
         symbolTableStack = new Stack<>();
