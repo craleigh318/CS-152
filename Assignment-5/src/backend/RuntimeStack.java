@@ -6,11 +6,23 @@
 
 package backend;
 
+import java.util.Stack;
+
 /**
- * This is the runtime stack for the program 
+ * This is the runtime stack for the program
  * @author BrandonRossi
  */
 public class RuntimeStack
 {
+    Stack<RuntimeActivationRecord> runTimeStack;
 
+    public RuntimeStack()
+    {
+        runTimeStack = new Stack<>();
+    }
+
+    public RuntimeActivationRecord addActivationRecord(RuntimeActivationRecord record)
+    {
+        return runTimeStack.push(record);
+    }
 }

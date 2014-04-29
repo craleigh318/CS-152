@@ -6,11 +6,18 @@
 
 package backend;
 
+import java.util.HashMap;
+
 /**
  *
  * @author BrandonRossi
  */
 public class RuntimeActivationRecord
 {
+    HashMap<String, String> localMemory;
 
+    public RuntimeActivationRecord()
+    {
+        localMemory = new HashMap<>();
+    }
 }
