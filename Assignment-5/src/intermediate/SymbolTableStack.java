@@ -45,8 +45,19 @@ public class SymbolTableStack
         return symbolTableStack;
     }
 
-    public Object addToTopLevelsymbolTable(String name, Token.Type type)
+    public Object addToTopLevelsymbolTable(String name, Token.Type type, boolean isnewScope)
     {
-        return symbolTableStack.peek().addElement(name, type);
+        if(isnewScope)
+        {
+            SymbolTable temp = new SymbolTable();
+            temp.addElement(name, type);
+           return symbolTableStack.push(temp);
+
+        }
+        else
+        {
+            return symbolTableStack.peek().addElement(name, type);
+        }
+
     }
 }

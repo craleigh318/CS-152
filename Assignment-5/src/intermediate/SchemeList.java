@@ -11,21 +11,25 @@ public class SchemeList implements SchemeListItem
 
     private SchemeListItem car;
     private SchemeList cdr;
+    private SymbolTable table;
 
-    public SchemeList ()
+    public SchemeList (SymbolTable table)
     {
         car = null;
         cdr = null;
+        this.table = table;
+
     }
 
     /**
      *
      * @param content the item with which to initialize the list
      */
-    public SchemeList (SchemeListItem content)
+    public SchemeList (SchemeListItem content, SymbolTable table)
     {
         car = content;
         cdr = null;
+        this.table = table;
     }
 
     /**
@@ -48,7 +52,7 @@ public class SchemeList implements SchemeListItem
     {
         if (newScope)
         {
-            
+
         }
         else
         {

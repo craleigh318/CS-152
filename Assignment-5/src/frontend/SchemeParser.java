@@ -58,8 +58,9 @@ public class SchemeParser {
         Token currentToken = scanner.nextToken();
         Token.Type currentTokenType = currentToken.getType();
         String currentTokenName = currentToken.getName();
-        while (!currentTokenType.equals(Token.Type.END_OF_INPUT)) {
 
+        while (!currentTokenType.equals(Token.Type.END_OF_INPUT)) {
+            boolean isNewScope = false;
             //if(currentTokenType == "SCOPE_KEYWORD"){}
             /*
              * Need to have a way to add a new symbolTable to the stack when a scope keyword is seen
@@ -76,8 +77,7 @@ public class SchemeParser {
                     || currentTokenName.equalsIgnoreCase("LETREC")
                     || currentTokenName.equalsIgnoreCase("LET*"))
             {
-                SymbolTable newScope = new SymbolTable();
-                symbolTableStack.pushSymbolTable(newScope);
+                isNewScope = true;
             }
 
             if (currentTokenName.equals("(")) {
@@ -88,7 +88,7 @@ public class SchemeParser {
                 addToken(currentToken);
                 if (currentTokenType.equals(Token.Type.IDENTIFIER)) {
 
-                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType);
+                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType, isNewScope);
                     referenceToTable = symbolTableStack.getSymbolTableStack().peek();
                 }
 
