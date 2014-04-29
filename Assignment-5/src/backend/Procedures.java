@@ -14,6 +14,7 @@ import intermediate.SchemeList;
  * A class that is used to evaluate list expressions and procedures such as
  * Addition, Subtraction, Multiplication, car, cdr, etc... 
  * @author BrandonRossi
+ * @author Christopher Raleigh
  */
 public class Procedures
 {
