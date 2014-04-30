@@ -20,7 +20,6 @@ public class SchemeList implements SchemeListItem {
         car = null;
         cdr = null;
         this.table = table;
-
     }
 
     /**
@@ -38,16 +37,33 @@ public class SchemeList implements SchemeListItem {
      * Adds an item to the end of this list.
      *
      * @param content the item to be added
-     * @param table current symbol table
      */
-    public void add(SchemeListItem content, SymbolTable table) {
+    public void add(SchemeListItem content) {
+        add(content, table);
+    }
+
+    /**
+     * Adds an item to the end of this list.
+     *
+     * @param content the item to be added
+     * @param table the new item's symbol table
+     */
+    public void add(SchemeListItem content, SymbolTable newTable) {
         if (car == null) {
             car = content;
         } else if (cdr == null) {
-            cdr = new SchemeList(content, table);
+            cdr = new SchemeList(content, newTable);
         } else {
-            cdr.add(content, table);
+            cdr.add(content, newTable);
         }
+    }
+
+    /**
+     *
+     * @return this list symbol table
+     */
+    public SymbolTable getTable() {
+        return table;
     }
 
     @Override

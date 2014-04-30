@@ -25,13 +25,11 @@ public class SymbolTable {
         symbolMap = new HashMap<>();
     }
 
-    public SymbolTable(Map map)
-    {
+    public SymbolTable(Map map) {
         symbolMap = map;
     }
 
-    public void addAllEmelents(Map map)
-    {
+    public void addAllEmelents(Map map) {
         symbolMap.putAll(map);
     }
 
@@ -45,6 +43,10 @@ public class SymbolTable {
     public Object addElement(String symbol_Key, Object attribute_value) {
         return symbolMap.put(symbol_Key, attribute_value);
 
+    }
+
+    public Map<String, Object> getSymbolMap() {
+        return symbolMap;
     }
 
     @Override

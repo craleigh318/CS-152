@@ -7,12 +7,11 @@ import java.util.HashMap;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class RuntimeActivationRecord
-{
+public class RuntimeActivationRecord {
+
     HashMap<String, String> localMemory;
 
-    public RuntimeActivationRecord()
-    {
+    public RuntimeActivationRecord() {
         localMemory = new HashMap<>();
     }
 }

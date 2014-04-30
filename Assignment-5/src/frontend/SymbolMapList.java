@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package frontend;
 
 import java.util.HashMap;
@@ -12,8 +11,7 @@ import java.util.HashMap;
  *
  * @author BrandonRossi
  */
-public class SymbolMapList
-{
+public class SymbolMapList {
 
     private static final String keyword = "KEYWORD";
     private static final String identifier = "IDENTIFIER";
@@ -21,18 +19,17 @@ public class SymbolMapList
     private static final String procedure = "PROCEDURE";
     private static final String scope_Keyword = "SCOPE_KEYWORD";
     private static final String list_Operator = "LIST_OPERATOR";
-
     private static HashMap<String, String> key_Word_Map;
     private static HashMap<String, String> special_Symbol_Map;
     private static HashMap<String, String> procedure_Symbol_Map;
 
-    static{
+    static {
         key_Word_Map = setUpKeywordMap();
         special_Symbol_Map = setUpSpecialSymbolMap();
         procedure_Symbol_Map = setUpProcedureSymbolMap();
     }
 
-     /**
+    /**
      * Checks if a string is a procedure.
      *
      * @param key the string to check
@@ -98,8 +95,7 @@ public class SymbolMapList
         return newMap;
     }
 
-    public static HashMap<String, String> setUpScopeKeyWordMap()
-    {
+    public static HashMap<String, String> setUpScopeKeyWordMap() {
         HashMap<String, String> newMap = new HashMap<>();
         newMap.put("define", scope_Keyword);
         newMap.put("let*", scope_Keyword);
@@ -160,5 +156,4 @@ public class SymbolMapList
         newMap.put("cons", list_Operator);
         return newMap;
     }
-
 }

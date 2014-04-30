@@ -16,12 +16,9 @@ import java.util.Stack;
  */
 public class SchemeParser {
 
-    IntermediateCode interCode;
-    SchemeScanner scanner;
-    Stack<SchemeList> currentTree;
-    SymbolTable symbolTable;
-    SymbolTableStack symbolTableStack;
-    private SymbolTable referenceToTable;
+    private IntermediateCode interCode;
+    private SchemeScanner scanner;
+    private SymbolTableStack symbolTableStack;
 
     /**
      *
@@ -71,12 +68,11 @@ public class SchemeParser {
              * AND A RECORD OF THE ROOT NODE TO THE SYMBOLTABLE
              * (REFERENCE APRIL 7 LECTURE LAST SLIDE)
              */
-            if(currentTokenName.equalsIgnoreCase("DEFINE")
+            if (currentTokenName.equalsIgnoreCase("DEFINE")
                     || currentTokenName.equalsIgnoreCase("LAMBDA")
                     || currentTokenName.equalsIgnoreCase("LET")
                     || currentTokenName.equalsIgnoreCase("LETREC")
-                    || currentTokenName.equalsIgnoreCase("LET*"))
-            {
+                    || currentTokenName.equalsIgnoreCase("LET*")) {
                 isNewScope = true;
             }
 
@@ -109,35 +105,5 @@ public class SchemeParser {
      */
     private boolean check_End_Of_Procedure(int leftPeren, int rightPeren) {
         return leftPeren == rightPeren;
-    }
-
-    /**
-     * Adds a token to the current innermost list.
-     *
-     * @param token the token to add
-     */
-    private void addToken(Token token) {
-        currentTree.peek().add(token);
-    }
-
-    /**
-     * Adds a Scheme list.
-     */
-    private void startList() {
-        SchemeList newNode = new SchemeList();
-        if (!currentTree.isEmpty()) {
-            currentTree.peek().add(newNode);
-        }
-        currentTree.push(newNode);
-    }
-
-    /**
-     * Ends a Scheme list.
-     */
-    private void endList() {
-        SchemeList outerList = currentTree.pop();
-        if (currentTree.empty()) {
-            interCode.getLists().add(outerList);
-        }
     }
 }

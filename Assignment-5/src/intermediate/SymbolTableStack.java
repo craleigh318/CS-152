@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package intermediate;
 
 import frontend.SymbolMapList;
@@ -14,13 +13,25 @@ import java.util.Stack;
  *
  * @author BrandonRossi
  */
-public class SymbolTableStack
-{
-    private Stack<SymbolTable> symbolTableStack;
+public class SymbolTableStack {
 
-    public SymbolTableStack()
-    {
+    private Stack<SymbolTable> symbolTableStack;
+    private Stack<SchemeListForSymbolTableStack> schemeListStack;
+
+    class SchemeListForSymbolTableStack {
+
+        SchemeList list;
+        boolean newScope;
+
+        public SchemeListForSymbolTableStack(SchemeList list, boolean newScope) {
+            this.list = list;
+            this.newScope = newScope;
+        }
+    }
+
+    public SymbolTableStack() {
         symbolTableStack = new Stack<>();
+        schemeListStack = new Stack<>();
         SymbolTable globalTable = new SymbolTable();
         globalTable.addAllEmelents(SymbolMapList.setUpKeywordMap());
         globalTable.addAllEmelents(SymbolMapList.setUpProcedureSymbolMap());
@@ -28,36 +39,67 @@ public class SymbolTableStack
         symbolTableStack.push(globalTable);
     }
 
-    public void pushSymbolTable(SymbolTable table)
-    {
-        symbolTableStack.push(table);
+    /**
+     * Adds a token to the current innermost list.
+     *
+     * @param token the token to add
+     */
+    public void addToken(Token token) {
+        schemeListStack.peek().list.add(token);
     }
 
-    public SymbolTable popSymbolTable()
-    {
-        SymbolTable tempTable = symbolTableStack.pop();
-
-        return tempTable;
+    /**
+     * Adds a Scheme list.
+     */
+    public void startList() {
+        startList(false);
     }
 
-    public Stack<SymbolTable> getSymbolTableStack()
-    {
+    /**
+     * Adds a Scheme list.
+     *
+     * @param newScope whether to have the list be a scope
+     */
+    public void startList(boolean newScope) {
+        if (newScope) {
+            symbolTableStack.push(new SymbolTable(symbolTableStack.peek().getSymbolMap()));
+        }
+        schemeListStack.push(new SchemeListForSymbolTableStack(new SchemeList(symbolTableStack.peek()), newScope));
+    }
+
+    /**
+     * Ends a Scheme list.
+     *
+     * @return the list that ended
+     */
+    public SchemeList endList() {
+        if (schemeListStack.size() > 1) {
+            SchemeListForSymbolTableStack outerList = schemeListStack.pop();
+            if (outerList.newScope) {
+                symbolTableStack.pop();
+            }
+            return outerList.list;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @return this object's stack of symbol tables
+     */
+    public Stack<SymbolTable> getSymbolTableStack() {
         return symbolTableStack;
     }
 
-    public Object addToTopLevelsymbolTable(String name, Token.Type type, boolean isnewScope)
-    {
-        if(isnewScope)
-        {
-            SymbolTable temp = new SymbolTable();
-            temp.addElement(name, type);
-           return symbolTableStack.push(temp);
-
-        }
-        else
-        {
-            return symbolTableStack.peek().addElement(name, type);
-        }
-
+    /**
+     * Adds a token element to this object's topmost symbol table
+     *
+     * @param name the token name
+     * @param type the token type
+     * @return
+     */
+    public Object addToTopLevelsymbolTable(String name, Token.Type type) {
+        return symbolTableStack.peek().addElement(name, type);
     }
 }

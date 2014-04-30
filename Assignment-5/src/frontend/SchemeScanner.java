@@ -13,7 +13,6 @@ import java.util.Scanner;
  */
 public class SchemeScanner {
 
-
     Scanner fileScanner;
     SymbolMapList symbolMapList;
 
@@ -54,10 +53,7 @@ public class SchemeScanner {
                 return new Token(currentToken, Token.Type.PROCEDURE);
             } else if (SymbolMapList.is_Special_Symbol(currentToken)) {
                 return new Token(currentToken, Token.Type.SPECIAL_SYMBOL);
-            }
-
-
-            else if (currentToken.equals("'(")) {
+            } else if (currentToken.equals("'(")) {
                 String tokenName = currentToken;
                 while (!currentToken.equals(")")) {
                     currentToken = fileScanner.next();
@@ -71,16 +67,11 @@ public class SchemeScanner {
                 }
                 return new Token(tokenName, Token.Type.IDENTIFIER);
             } else if (Character.isDigit(currentToken.charAt(0))) {
-                if(currentToken.length() == 1)
-                {
+                if (currentToken.length() == 1) {
                     return new Token(currentToken, Token.Type.NUMBER);
-                }
-                else
-                {
-                    for (int i = 1; i < currentToken.length(); i++)
-                    {
-                        if(!Character.isDigit(currentToken.charAt(i)) && currentToken.charAt(i) != '.')
-                        {
+                } else {
+                    for (int i = 1; i < currentToken.length(); i++) {
+                        if (!Character.isDigit(currentToken.charAt(i)) && currentToken.charAt(i) != '.') {
                             return new Token(currentToken, Token.Type.ERROR);
                         }
                     }
@@ -91,8 +82,4 @@ public class SchemeScanner {
             return new Token("END OF INPUT", Token.Type.END_OF_INPUT);
         }
     }
-
-
-
-
 }
