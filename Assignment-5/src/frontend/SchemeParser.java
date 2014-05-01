@@ -1,7 +1,6 @@
 package frontend;
 
 import intermediate.IntermediateCode;
-import intermediate.SchemeList;
 import intermediate.SymbolTable;
 import intermediate.SymbolTableStack;
 import java.io.File;
@@ -24,13 +23,12 @@ public class SchemeParser {
      *
      * @param intCode intermediate code to which to compile
      * @param source Scheme source file from which to read
+     * @param symbolStack a stack to store the Scheme program's symbol tables
      * @throws FileNotFoundException
      */
-    public SchemeParser(IntermediateCode intCode, File source, SymbolTable symbolT, SymbolTableStack symbolStack) throws FileNotFoundException {
+    public SchemeParser(IntermediateCode intCode, File source, SymbolTableStack symbolStack) throws FileNotFoundException {
         interCode = intCode;
-        symbolTable = symbolT;
         scanner = new SchemeScanner(source);
-        currentTree = new Stack<>();
         symbolTableStack = symbolStack;
 
     }
@@ -39,12 +37,11 @@ public class SchemeParser {
      *
      * @param intCode intermediate code to which to compile
      * @param source Scheme source string from which to read
+     * @param symbolStack a stack to store the Scheme program's symbol tables
      */
-    public SchemeParser(IntermediateCode intCode, String source, SymbolTable symbolT, SymbolTableStack symbolStack) {
+    public SchemeParser(IntermediateCode intCode, String source, SymbolTableStack symbolStack) {
         interCode = intCode;
-        symbolTable = symbolT;
         scanner = new SchemeScanner(source);
-        currentTree = new Stack<>();
         symbolTableStack = symbolStack;
     }
 
@@ -77,15 +74,14 @@ public class SchemeParser {
             }
 
             if (currentTokenName.equals("(")) {
-                startList();
+                symbolTableStack.startList();
             } else if (currentTokenName.equals(")")) {
-                endList();
+                symbolTableStack.endList();
             } else if (!(currentTokenType.equals(Token.Type.ERROR) || currentTokenType.equals(Token.Type.SPECIAL_SYMBOL))) {
-                addToken(currentToken);
+                symbolTableStack.addToken(currentToken);
                 if (currentTokenType.equals(Token.Type.IDENTIFIER)) {
 
-                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType, isNewScope);
-                    referenceToTable = symbolTableStack.getSymbolTableStack().peek();
+                    symbolTableStack.addToTopLevelsymbolTable(currentTokenName, currentTokenType);
                 }
 
             }

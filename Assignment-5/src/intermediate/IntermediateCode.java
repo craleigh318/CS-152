@@ -25,4 +25,12 @@ public class IntermediateCode {
     public ArrayList<SchemeList> getLists() {
         return roots;
     }
+
+    /**
+     *
+     * @return the symbol table stack
+     */
+    public SymbolTableStack getSymbolTableStack() {
+        return symbolTableStack;
+    }
 }

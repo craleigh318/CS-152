@@ -8,6 +8,7 @@ import intermediate.SymbolTableStack;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * Executes a Scheme program from its source code.
@@ -46,9 +47,8 @@ public class Executor {
 
 
                 IntermediateCode interCode = new IntermediateCode();
-                SymbolTable symbolTable = new SymbolTable();
                 SymbolTableStack symbolTableStack = new SymbolTableStack();
-                SchemeParser parser = new SchemeParser(interCode, file, symbolTable, symbolTableStack);
+                SchemeParser parser = new SchemeParser(interCode, file, symbolTableStack);
 
 
 
@@ -56,6 +56,7 @@ public class Executor {
                 for (SchemeList s : interCode.getLists()) {
                     output.println(s.toString());
                 }
+                Stack symbolTable = interCode.getSymbolTableStack().getSymbolTableStack();
                 output.println("\nThe contents of the Symbol Table \n" + symbolTable.toString());
 
 
