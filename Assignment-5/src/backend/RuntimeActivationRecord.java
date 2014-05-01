@@ -9,9 +9,30 @@ import java.util.HashMap;
  */
 public class RuntimeActivationRecord {
 
-    HashMap<String, String> localMemory;
+    HashMap<String, Object> localMemory;
 
     public RuntimeActivationRecord() {
         localMemory = new HashMap<>();
+    }
+
+    /**
+     * Adds the variable to local memory.
+     *
+     * @param key the variable name
+     * @param value the value of the variable
+     * @return the previous value, if applicable
+     */
+    public Object addVariable(String key, Object value) {
+        return localMemory.put(key, value);
+    }
+
+    /**
+     * Removes the variable from local memory.
+     *
+     * @param key the variable name
+     * @return the value of the removed variable
+     */
+    public Object removeVariable(String key) {
+        return localMemory.remove(key);
     }
 }
