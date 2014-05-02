@@ -102,4 +102,12 @@ public class SymbolTableStack {
     public Object addToTopLevelsymbolTable(String name, Token.Type type) {
         return symbolTableStack.peek().addElement(name, type);
     }
+
+    /**
+     *
+     * @return the entire "root" SchemeList of this symbol table stack
+     */
+    public SchemeList getRootSchemeList() {
+        return schemeListStack.get(0).list;
+    }
 }
