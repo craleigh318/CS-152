@@ -3,6 +3,7 @@ package backend;
 import intermediate.SymbolTable;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.TreeMap;
 
@@ -30,10 +31,34 @@ public class RuntimeDisplay {
      * @return true if table is successfully added
      */
     public boolean addSymbolTable(int scopeLevel, SymbolTable symbolTable) {
-        Set<SymbolTable> targetSet = symbolTables.get(scopeLevel);
-        if (targetSet == null) {
+        if (!symbolTables.containsKey(scopeLevel)) {
             symbolTables.put(scopeLevel, new HashSet<SymbolTable>());
         }
-        return targetSet.add(symbolTable);
+        return symbolTables.get(scopeLevel).add(symbolTable);
+    }
+
+    /**
+     * Gets the scope of the specified symbol table.
+     *
+     * @param symbolTable the symbol table to find
+     * @return symbolTable's scope
+     */
+    public int getScopeLevel(SymbolTable symbolTable) {
+        for (Map.Entry<Integer, Set<SymbolTable>> entry : symbolTables.entrySet()) {
+            if (entry.getValue().contains(symbolTable)) {
+                return entry.getKey();
+            }
+        }
+        throw new NoSuchElementException();
+    }
+
+    /**
+     * Gets a set containing all symbol tables in a particular depth of scope.
+     *
+     * @param scopeLevel the scope in which to return
+     * @return the set of symbol tables in the specified depth
+     */
+    public Set<SymbolTable> getAllSymbolTablesInScope(int scopeLevel) {
+        return symbolTables.get(scopeLevel);
     }
 }
