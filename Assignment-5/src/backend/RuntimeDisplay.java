@@ -15,8 +15,8 @@ import java.util.TreeMap;
  */
 public class RuntimeDisplay {
 
-    private RuntimeStack runtimeStack;
-    private Map<Integer, Set<SymbolTable>> symbolTables;
+    private final RuntimeStack runtimeStack;
+    private final Map<Integer, Set<SymbolTable>> symbolTables;
 
     public RuntimeDisplay() {
         runtimeStack = new RuntimeStack();
