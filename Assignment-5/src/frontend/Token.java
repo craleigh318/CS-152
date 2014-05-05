@@ -11,8 +11,8 @@ import intermediate.SchemeListItem;
  */
 public class Token implements SchemeListItem {
 
-    private String name;
-    private Type type;
+    private final String name;
+    private final Type type;
 
     /**
      * A list of the different types of token in Scheme.

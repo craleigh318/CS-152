@@ -46,7 +46,7 @@ public class SchemeList implements SchemeListItem {
      * Adds an item to the end of this list.
      *
      * @param content the item to be added
-     * @param table the new item's symbol table
+     * @param newTable
      */
     public void add(SchemeListItem content, SymbolTable newTable) {
         if (car == null) {

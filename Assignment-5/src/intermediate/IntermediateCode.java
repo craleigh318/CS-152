@@ -10,8 +10,8 @@ import java.util.ArrayList;
  */
 public class IntermediateCode {
 
-    private ArrayList<SchemeList> roots;
-    private SymbolTableStack symbolTableStack;
+    private final ArrayList<SchemeList> roots;
+    private final SymbolTableStack symbolTableStack;
 
     public IntermediateCode() {
         roots = new ArrayList<>();

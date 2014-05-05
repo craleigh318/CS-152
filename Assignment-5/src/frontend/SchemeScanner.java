@@ -13,8 +13,8 @@ import java.util.Scanner;
  */
 public class SchemeScanner {
 
-    Scanner fileScanner;
-    SymbolMapList symbolMapList;
+    private final Scanner fileScanner;
+    private SymbolMapList symbolMapList;
 
     /**
      *

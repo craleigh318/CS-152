@@ -19,9 +19,9 @@ public class SymbolMapList {
     private static final String procedure = "PROCEDURE";
     private static final String scope_Keyword = "SCOPE_KEYWORD";
     private static final String list_Operator = "LIST_OPERATOR";
-    private static HashMap<String, String> key_Word_Map;
-    private static HashMap<String, String> special_Symbol_Map;
-    private static HashMap<String, String> procedure_Symbol_Map;
+    private static final HashMap<String, String> key_Word_Map;
+    private static final HashMap<String, String> special_Symbol_Map;
+    private static final HashMap<String, String> procedure_Symbol_Map;
 
     static {
         key_Word_Map = setUpKeywordMap();

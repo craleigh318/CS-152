@@ -91,18 +91,4 @@ public class Procedures {
     public static SchemeList cdr(SchemeList list) {
         return list.cdr();
     }
-
-    /**
-     * Append a new element to the list (cons 'a '(b)) returns (a b)
-     * @param carOfList
-     * @param cdrOfList
-     * @return A string representation of the cons of a list
-     *
-     * DONT KNOW IF THIS SHOULD BE A STRING
-     */
-    public static String cons(SchemeList carOfList,SchemeList cdrOfList)
-    {
-        String tempString = carOfList.toString() + cdrOfList.toString();
-        return tempString;
-    }
 }

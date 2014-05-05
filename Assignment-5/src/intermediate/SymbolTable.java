@@ -18,7 +18,7 @@ public class SymbolTable {
     //value of the attribute table
     private String attributeValue;
     //Add a treemap to this
-    Map<String, Object> symbolMap;
+    private Map<String, Object> symbolMap;
 
     public SymbolTable() {
         //symbolTable = new Hashtable<>();
