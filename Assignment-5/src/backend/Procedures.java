@@ -27,6 +27,7 @@ public class Procedures
         {
             ret += sum(cdr);
         }
+        System.out.printf("The Sum Is: %d", ret);
         return ret;
     }
 
@@ -44,6 +45,7 @@ public class Procedures
         {
             ret -= sum(cdr);
         }
+        System.out.printf("The Sum Is: %d", ret);
         return ret;
     }
 
@@ -61,6 +63,7 @@ public class Procedures
         {
             ret *= product(cdr);
         }
+        System.out.printf("The Product Is: %d", ret);
         return ret;
     }
 
@@ -78,6 +81,7 @@ public class Procedures
         {
             ret /= product(cdr);
         }
+        System.out.printf("The Quotient Is: %d", ret);
         return ret;
     }
 
@@ -89,6 +93,7 @@ public class Procedures
      */
     public static SchemeListItem car (SchemeList list)
     {
+        System.out.println("The CAR IS: " + list.car().toString());
         return list.car();
     }
 
@@ -100,6 +105,7 @@ public class Procedures
      */
     public static SchemeList cdr (SchemeList list)
     {
+        System.out.println("The CDR IS: " + list.cdr().toString());
         return list.cdr();
     }
 }

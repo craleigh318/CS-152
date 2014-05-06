@@ -62,6 +62,11 @@ public class Run
                 Stack symbolTable = interCode.getSymbolTableStack().getSymbolTableStack();
                 output.println("\nThe contents of the Symbol Table \n" + symbolTable.toString());
 
+                /*
+                 * Runs the program
+                 */
+                Executor executor = new Executor(interCode);
+                executor.runInter();
             }
             catch (Exception e)
             {

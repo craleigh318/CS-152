@@ -19,10 +19,10 @@ public class Executor
     private SymbolTable symbolTable;
     private RuntimeDisplay runDisplay;
 
-    public Executor (IntermediateCode list, SymbolTable symTable)
+    public Executor (IntermediateCode list)
     {
         rootList = list;
-        symbolTable = symTable;
+
         runDisplay = new RuntimeDisplay();
     }
 
@@ -38,10 +38,11 @@ public class Executor
     {
         try
         {
+            Token temp2;
             SchemeListItem temp = list.car();
             if (temp instanceof Token)
             {
-                Token temp2 = (Token) temp;
+                temp2 = (Token) temp;
                 SchemeListItem key = list.cdr().car();
                 SchemeListItem value = list.cdr().cdr().car();
                 if (temp2.getType().equals(Token.Type.SCOPE_KEYWORD))
@@ -50,16 +51,42 @@ public class Executor
                     actRec.addVariable(key, value);
                     runDisplay.addRecord(scopeLevel, actRec);
                 }
+
+                switch (temp2.getName())
+                {
+                    case "+":
+                        Procedures.sum(list);
+                        break;
+                    case "-":
+                        Procedures.difference(list);
+                        break;
+                    case "*":
+                        Procedures.product(list);
+                        break;
+                    case "/":
+                        Procedures.quotient(list);
+                        break;
+                    case "car":
+                        Procedures.car(list);
+                        break;
+                    case "cdr":
+                        Procedures.cdr(list);
+                        break;
+                }
+
+
             }
             else if (temp instanceof SchemeList)
             {
-                SchemeList temp2 = (SchemeList) temp;
-                runInter(temp2, scopeLevel +1);
+                SchemeList temp2SchemeList = (SchemeList) temp;
+                runInter(temp2SchemeList, scopeLevel + 1);
             }
             SchemeList cdr = list.cdr();
-            if (cdr != null) {
-                runInter(cdr, scopeLevel +1);
+            if (cdr != null)
+            {
+                runInter(cdr, scopeLevel + 1);
             }
+
         }
         catch (ClassCastException e)
         {
