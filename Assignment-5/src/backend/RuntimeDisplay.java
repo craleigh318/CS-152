@@ -71,7 +71,7 @@ public class RuntimeDisplay
     public RuntimeActivationRecord removeRecord (int scopeLevel)
     {
         RuntimeActivationRecord temp = runtimeMap.get(scopeLevel);
-        if(temp.getPreviousRunTimeActivationRecord() != null)
+        if (temp.getPreviousRunTimeActivationRecord() != null)
         {
             runtimeMap.put(scopeLevel, temp.getPreviousRunTimeActivationRecord());
         }

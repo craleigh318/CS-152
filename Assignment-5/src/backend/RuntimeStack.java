@@ -8,19 +8,22 @@ import java.util.Stack;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class RuntimeStack {
+public class RuntimeStack
+{
 
     Stack<RuntimeActivationRecord> runTimeStack;
 
-    public RuntimeStack() {
+    public RuntimeStack ()
+    {
         runTimeStack = new Stack<>();
     }
 
-    public RuntimeActivationRecord addActivationRecord(RuntimeActivationRecord record) {
+    public RuntimeActivationRecord addActivationRecord (RuntimeActivationRecord record)
+    {
         return runTimeStack.push(record);
     }
 
-    public RuntimeActivationRecord removeRunTimeActivationRecord()
+    public RuntimeActivationRecord removeRunTimeActivationRecord ()
     {
         return runTimeStack.pop();
     }

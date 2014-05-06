@@ -9,7 +9,8 @@ import intermediate.SchemeListItem;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class Token implements SchemeListItem {
+public class Token implements SchemeListItem
+{
 
     private final String name;
     private final Type type;
@@ -17,7 +18,8 @@ public class Token implements SchemeListItem {
     /**
      * A list of the different types of token in Scheme.
      */
-    public static enum Type {
+    public static enum Type
+    {
 
         IDENTIFIER, KEYWORD, SCOPE_KEYWORD, LIST_OPERATOR, BASIC_OPERATION, NUMBER, SPECIAL_SYMBOL, PROCEDURE, END_OF_INPUT, ERROR
     }
@@ -27,7 +29,8 @@ public class Token implements SchemeListItem {
      * @param name the name of the token
      * @param type the type of token
      */
-    public Token(String name, Token.Type type) {
+    public Token (String name, Token.Type type)
+    {
         this.name = name;
         this.type = type;
     }
@@ -36,7 +39,8 @@ public class Token implements SchemeListItem {
      *
      * @return the token's name
      */
-    public String getName() {
+    public String getName ()
+    {
         return this.name;
         //System.out.println("Token String " + this.name);
     }
@@ -45,23 +49,27 @@ public class Token implements SchemeListItem {
      *
      * @return the token's type
      */
-    public Type getType() {
+    public Type getType ()
+    {
         return type;
         //System.out.println("Token Type " + this.type);
     }
 
     @Override
-    public String toString() {
+    public String toString ()
+    {
         return name;
     }
 
     @Override
-    public SchemeListItem car() {
+    public SchemeListItem car ()
+    {
         return null;
     }
 
     @Override
-    public SchemeList cdr() {
+    public SchemeList cdr ()
+    {
         return null;
     }
 }

@@ -8,12 +8,14 @@ import java.util.ArrayList;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class IntermediateCode {
+public class IntermediateCode
+{
 
     private ArrayList<SchemeList> roots;
     private SymbolTableStack symbolTableStack;
 
-    public IntermediateCode() {
+    public IntermediateCode ()
+    {
         roots = new ArrayList<>();
         symbolTableStack = new SymbolTableStack();
     }
@@ -22,7 +24,8 @@ public class IntermediateCode {
      *
      * @return the lists of the Scheme source
      */
-    public ArrayList<SchemeList> getLists() {
+    public ArrayList<SchemeList> getLists ()
+    {
         return roots;
     }
 
@@ -30,7 +33,8 @@ public class IntermediateCode {
      *
      * @return the symbol table stack
      */
-    public SymbolTableStack getSymbolTableStack() {
+    public SymbolTableStack getSymbolTableStack ()
+    {
         return symbolTableStack;
     }
 }

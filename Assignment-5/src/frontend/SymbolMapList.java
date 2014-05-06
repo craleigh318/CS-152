@@ -11,7 +11,8 @@ import java.util.HashMap;
  *
  * @author BrandonRossi
  */
-public class SymbolMapList {
+public class SymbolMapList
+{
 
     private static final String keyword = "KEYWORD";
     private static final String identifier = "IDENTIFIER";
@@ -23,7 +24,8 @@ public class SymbolMapList {
     private static final HashMap<String, String> special_Symbol_Map;
     private static final HashMap<String, String> procedure_Symbol_Map;
 
-    static {
+    static
+    {
         key_Word_Map = setUpKeywordMap();
         special_Symbol_Map = setUpSpecialSymbolMap();
         procedure_Symbol_Map = setUpProcedureSymbolMap();
@@ -35,7 +37,8 @@ public class SymbolMapList {
      * @param key the string to check
      * @return true if key is a procedure
      */
-    public static boolean is_Procedure(String key) {
+    public static boolean is_Procedure (String key)
+    {
         return procedure_Symbol_Map.containsKey(key);
     }
 
@@ -45,7 +48,8 @@ public class SymbolMapList {
      * @param key the string to check
      * @return true if key is a special symbol
      */
-    public static boolean is_Special_Symbol(String key) {
+    public static boolean is_Special_Symbol (String key)
+    {
         return special_Symbol_Map.containsKey(key);
     }
 
@@ -55,7 +59,8 @@ public class SymbolMapList {
      * @param key the string to check
      * @return true if key is a keyword
      */
-    public static boolean is_Key_Word(String key) {
+    public static boolean is_Key_Word (String key)
+    {
         return key_Word_Map.containsKey(key);
     }
 
@@ -63,7 +68,8 @@ public class SymbolMapList {
      *
      * @return a map of all of the keywords in Scheme
      */
-    public static HashMap<String, String> setUpKeywordMap() {
+    public static HashMap<String, String> setUpKeywordMap ()
+    {
         HashMap<String, String> newMap = new HashMap<>();
         newMap.putAll(setUpScopeKeyWordMap());
         newMap.put("begin", keyword);
@@ -95,7 +101,8 @@ public class SymbolMapList {
         return newMap;
     }
 
-    public static HashMap<String, String> setUpScopeKeyWordMap() {
+    public static HashMap<String, String> setUpScopeKeyWordMap ()
+    {
         HashMap<String, String> newMap = new HashMap<>();
         newMap.put("define", scope_Keyword);
         newMap.put("let*", scope_Keyword);
@@ -109,7 +116,8 @@ public class SymbolMapList {
      *
      * @return a map of all of the special symbols in Scheme
      */
-    public static HashMap<String, String> setUpSpecialSymbolMap() {
+    public static HashMap<String, String> setUpSpecialSymbolMap ()
+    {
         HashMap<String, String> newMap = new HashMap<>();
         newMap.put("[", special_Symbol);
         newMap.put("]", special_Symbol);
@@ -129,7 +137,8 @@ public class SymbolMapList {
      *
      * @return a map of all of the predefined procedures in Scheme
      */
-    public static HashMap<String, String> setUpProcedureSymbolMap() {
+    public static HashMap<String, String> setUpProcedureSymbolMap ()
+    {
         HashMap<String, String> newMap = new HashMap<>();
         newMap.putAll(setUpListOperationsMap());
         newMap.put("+", procedure);
@@ -148,7 +157,8 @@ public class SymbolMapList {
         return newMap;
     }
 
-    private static HashMap<String, String> setUpListOperationsMap() {
+    private static HashMap<String, String> setUpListOperationsMap ()
+    {
         HashMap<String, String> newMap = new HashMap<>();
         newMap.put("list", list_Operator);
         newMap.put("car", list_Operator);

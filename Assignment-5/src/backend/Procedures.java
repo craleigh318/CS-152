@@ -10,7 +10,8 @@ import intermediate.SchemeListItem;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class Procedures {
+public class Procedures
+{
 
     /**
      * Calculates the sum.
@@ -18,10 +19,12 @@ public class Procedures {
      * @param list the list to calculate, from the first number
      * @return the sum
      */
-    public static int sum(SchemeList list) {
+    public static int sum (SchemeList list)
+    {
         int ret = Integer.parseInt(list.car().toString());
         SchemeList cdr = list.cdr();
-        if (cdr != null) {
+        if (cdr != null)
+        {
             ret += sum(cdr);
         }
         return ret;
@@ -33,10 +36,12 @@ public class Procedures {
      * @param list the list to calculate, from the first number
      * @return the sum
      */
-    public static int difference(SchemeList list) {
+    public static int difference (SchemeList list)
+    {
         int ret = Integer.parseInt(list.car().toString());
         SchemeList cdr = list.cdr();
-        if (cdr != null) {
+        if (cdr != null)
+        {
             ret -= sum(cdr);
         }
         return ret;
@@ -48,10 +53,12 @@ public class Procedures {
      * @param list the list to calculate, from the first number
      * @return the product
      */
-    public static double product(SchemeList list) {
+    public static double product (SchemeList list)
+    {
         double ret = Double.parseDouble(list.car().toString());
         SchemeList cdr = list.cdr();
-        if (cdr != null) {
+        if (cdr != null)
+        {
             ret *= product(cdr);
         }
         return ret;
@@ -63,10 +70,12 @@ public class Procedures {
      * @param list the list to calculate, from the first number
      * @return the product
      */
-    public static double quotient(SchemeList list) {
+    public static double quotient (SchemeList list)
+    {
         double ret = Double.parseDouble(list.car().toString());
         SchemeList cdr = list.cdr();
-        if (cdr != null) {
+        if (cdr != null)
+        {
             ret /= product(cdr);
         }
         return ret;
@@ -78,7 +87,8 @@ public class Procedures {
      * @param list the list from which to derive the item
      * @return the first item of the list
      */
-    public static SchemeListItem car(SchemeList list) {
+    public static SchemeListItem car (SchemeList list)
+    {
         return list.car();
     }
 
@@ -88,7 +98,8 @@ public class Procedures {
      * @param list the list to derive
      * @return the list from the second item
      */
-    public static SchemeList cdr(SchemeList list) {
+    public static SchemeList cdr (SchemeList list)
+    {
         return list.cdr();
     }
 }

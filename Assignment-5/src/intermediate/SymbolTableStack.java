@@ -13,23 +13,27 @@ import java.util.Stack;
  *
  * @author BrandonRossi
  */
-public class SymbolTableStack {
+public class SymbolTableStack
+{
 
     private Stack<SymbolTable> symbolTableStack;
     private Stack<SchemeListForSymbolTableStack> schemeListStack;
 
-    class SchemeListForSymbolTableStack {
+    class SchemeListForSymbolTableStack
+    {
 
         SchemeList list;
         boolean newScope;
 
-        public SchemeListForSymbolTableStack(SchemeList list, boolean newScope) {
+        public SchemeListForSymbolTableStack (SchemeList list, boolean newScope)
+        {
             this.list = list;
             this.newScope = newScope;
         }
     }
 
-    public SymbolTableStack() {
+    public SymbolTableStack ()
+    {
         symbolTableStack = new Stack<>();
         schemeListStack = new Stack<>();
         SymbolTable globalTable = new SymbolTable();
@@ -44,14 +48,16 @@ public class SymbolTableStack {
      *
      * @param token the token to add
      */
-    public void addToken(Token token) {
+    public void addToken (Token token)
+    {
         schemeListStack.peek().list.add(token);
     }
 
     /**
      * Adds a Scheme list.
      */
-    public void startList() {
+    public void startList ()
+    {
         startList(false);
     }
 
@@ -60,8 +66,10 @@ public class SymbolTableStack {
      *
      * @param newScope whether to have the list be a scope
      */
-    public void startList(boolean newScope) {
-        if (newScope) {
+    public void startList (boolean newScope)
+    {
+        if (newScope)
+        {
             symbolTableStack.push(new SymbolTable(symbolTableStack.peek().getSymbolMap()));
         }
         schemeListStack.push(new SchemeListForSymbolTableStack(new SchemeList(symbolTableStack.peek()), newScope));
@@ -72,14 +80,19 @@ public class SymbolTableStack {
      *
      * @return the list that ended
      */
-    public SchemeList endList() {
-        if (schemeListStack.size() > 1) {
+    public SchemeList endList ()
+    {
+        if (schemeListStack.size() > 1)
+        {
             SchemeListForSymbolTableStack outerList = schemeListStack.pop();
-            if (outerList.newScope) {
+            if (outerList.newScope)
+            {
                 symbolTableStack.pop();
             }
             return outerList.list;
-        } else {
+        }
+        else
+        {
             return null;
         }
     }
@@ -88,7 +101,8 @@ public class SymbolTableStack {
      *
      * @return this object's stack of symbol tables
      */
-    public Stack<SymbolTable> getSymbolTableStack() {
+    public Stack<SymbolTable> getSymbolTableStack ()
+    {
         return symbolTableStack;
     }
 
@@ -99,7 +113,8 @@ public class SymbolTableStack {
      * @param type the token type
      * @return
      */
-    public Object addToTopLevelsymbolTable(String name, Token.Type type) {
+    public Object addToTopLevelsymbolTable (String name, Token.Type type)
+    {
         return symbolTableStack.peek().addElement(name, type);
     }
 
@@ -107,7 +122,8 @@ public class SymbolTableStack {
      *
      * @return the entire "root" SchemeList of this symbol table stack
      */
-    public SchemeList getRootSchemeList() {
+    public SchemeList getRootSchemeList ()
+    {
         return schemeListStack.get(0).list;
     }
 }

@@ -9,7 +9,8 @@ import java.util.Map;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class SymbolTable {
+public class SymbolTable
+{
     //Key for the symbol table
 
     private String entryNameKey;
@@ -20,39 +21,46 @@ public class SymbolTable {
     //Add a treemap to this
     private Map<String, Object> symbolMap;
 
-    public SymbolTable() {
+    public SymbolTable ()
+    {
         //symbolTable = new Hashtable<>();
         symbolMap = new HashMap<>();
     }
 
-    public SymbolTable(Map map) {
+    public SymbolTable (Map map)
+    {
         symbolMap = map;
     }
 
-    public void addAllEmelents(Map map) {
+    public void addAllEmelents (Map map)
+    {
         symbolMap.putAll(map);
     }
 
     /**
      * Adds a token to this symbol table.
      *
-     * @param symbol_Key the token to be added
+     * @param symbol_Key      the token to be added
      * @param attribute_value symbol_Key's value
      * @return symbolmap object
      */
-    public Object addElement(String symbol_Key, Object attribute_value) {
+    public Object addElement (String symbol_Key, Object attribute_value)
+    {
         return symbolMap.put(symbol_Key, attribute_value);
 
     }
 
-    public Map<String, Object> getSymbolMap() {
+    public Map<String, Object> getSymbolMap ()
+    {
         return symbolMap;
     }
 
     @Override
-    public String toString() {
+    public String toString ()
+    {
         String temp = "";
-        for (String s : symbolMap.keySet()) {
+        for (String s : symbolMap.keySet())
+        {
             temp = temp.concat(s + "\n");
         }
         return temp;
