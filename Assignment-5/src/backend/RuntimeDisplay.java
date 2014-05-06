@@ -1,10 +1,7 @@
 package backend;
 
-import intermediate.SymbolTable;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.TreeMap;
 
 /**
@@ -13,39 +10,47 @@ import java.util.TreeMap;
  * @author BrandonRossi
  * @author Christopher Raleigh
  */
-public class RuntimeDisplay {
+public class RuntimeDisplay
+{
 
     private final RuntimeStack runtimeStack;
-    private final Map<Integer, Set<SymbolTable>> symbolTables;
+    private final Map<Integer, RuntimeActivationRecord> runtimeMap;
 
-    public RuntimeDisplay() {
+    public RuntimeDisplay ()
+    {
         runtimeStack = new RuntimeStack();
-        symbolTables = new TreeMap<>();
+        runtimeMap = new TreeMap<>();
     }
 
     /**
      * Adds a symbol table to the runtime.
      *
      * @param scopeLevel the depth of the symbol table
-     * @param symbolTable the symbol table to be added
+     * @param record     the symbol table to be added
      * @return true if table is successfully added
      */
-    public boolean addSymbolTable(int scopeLevel, SymbolTable symbolTable) {
-        if (!symbolTables.containsKey(scopeLevel)) {
-            symbolTables.put(scopeLevel, new HashSet<SymbolTable>());
+    public RuntimeActivationRecord addRecord (int scopeLevel, RuntimeActivationRecord record)
+    {
+        if (runtimeMap.containsKey(scopeLevel))
+        {
+            record.setPreviousActivationRecord(runtimeMap.get(scopeLevel));
         }
-        return symbolTables.get(scopeLevel).add(symbolTable);
+        runtimeStack.addActivationRecord(record);
+        return runtimeMap.put(scopeLevel, record);
     }
 
     /**
      * Gets the scope of the specified symbol table.
      *
-     * @param symbolTable the symbol table to find
+     * @param record the symbol table to find
      * @return symbolTable's scope
      */
-    public int getScopeLevel(SymbolTable symbolTable) {
-        for (Map.Entry<Integer, Set<SymbolTable>> entry : symbolTables.entrySet()) {
-            if (entry.getValue().contains(symbolTable)) {
+    public int getScopeLevel (RuntimeActivationRecord record)
+    {
+        for (Map.Entry<Integer, RuntimeActivationRecord> entry : runtimeMap.entrySet())
+        {
+            if (entry.getValue().equals(record))
+            {
                 return entry.getKey();
             }
         }
@@ -58,7 +63,20 @@ public class RuntimeDisplay {
      * @param scopeLevel the scope in which to return
      * @return the set of symbol tables in the specified depth
      */
-    public Set<SymbolTable> getAllSymbolTablesInScope(int scopeLevel) {
-        return symbolTables.get(scopeLevel);
+    public RuntimeActivationRecord getRecord (int scopeLevel)
+    {
+        return runtimeMap.get(scopeLevel);
+    }
+
+    public RuntimeActivationRecord removeRecord (int scopeLevel)
+    {
+        RuntimeActivationRecord temp = runtimeMap.get(scopeLevel);
+        if(temp.getPreviousRunTimeActivationRecord() != null)
+        {
+            runtimeMap.put(scopeLevel, temp.getPreviousRunTimeActivationRecord());
+        }
+
+        return temp;
+
     }
 }

@@ -9,10 +9,12 @@ import java.util.HashMap;
  */
 public class RuntimeActivationRecord {
 
-    HashMap<String, Object> localMemory;
+    private RuntimeActivationRecord previousRecord;
+    private HashMap<String, Object> localMemory;
 
     public RuntimeActivationRecord() {
         localMemory = new HashMap<>();
+        previousRecord = null;
     }
 
     /**
@@ -34,5 +36,15 @@ public class RuntimeActivationRecord {
      */
     public Object removeVariable(String key) {
         return localMemory.remove(key);
+    }
+
+    public void setPreviousActivationRecord (RuntimeActivationRecord record)
+    {
+        this.previousRecord = record;
+    }
+
+    public RuntimeActivationRecord getPreviousRunTimeActivationRecord()
+    {
+        return this.previousRecord;
     }
 }

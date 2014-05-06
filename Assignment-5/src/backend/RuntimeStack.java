@@ -19,4 +19,9 @@ public class RuntimeStack {
     public RuntimeActivationRecord addActivationRecord(RuntimeActivationRecord record) {
         return runTimeStack.push(record);
     }
+
+    public RuntimeActivationRecord removeRunTimeActivationRecord()
+    {
+        return runTimeStack.pop();
+    }
 }
