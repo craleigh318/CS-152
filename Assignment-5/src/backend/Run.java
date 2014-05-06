@@ -1,9 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package backend;
 
 import frontend.SchemeParser;
 import intermediate.IntermediateCode;
 import intermediate.SchemeList;
-import intermediate.SymbolTable;
 import intermediate.SymbolTableStack;
 import java.io.File;
 import java.io.PrintStream;
@@ -11,13 +16,11 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
- * Executes a Scheme program from its source code.
  *
  * @author BrandonRossi
- * @author Christopher Raleigh
  */
-public class Executor {
-
+public class Run
+{
     public static void main(String[] args) {
         if (args.length >= 1) {
             try {

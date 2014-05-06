@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class RuntimeActivationRecord {
 
     private RuntimeActivationRecord previousRecord;
-    private HashMap<String, Object> localMemory;
+    private HashMap<Object, Object> localMemory;
 
     public RuntimeActivationRecord() {
         localMemory = new HashMap<>();
@@ -24,7 +24,7 @@ public class RuntimeActivationRecord {
      * @param value the value of the variable
      * @return the previous value, if applicable
      */
-    public Object addVariable(String key, Object value) {
+    public Object addVariable(Object key, Object value) {
         return localMemory.put(key, value);
     }
 
@@ -34,7 +34,7 @@ public class RuntimeActivationRecord {
      * @param key the variable name
      * @return the value of the removed variable
      */
-    public Object removeVariable(String key) {
+    public Object removeVariable(Object key) {
         return localMemory.remove(key);
     }
 
